@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grandeur - Professional Makeup Team</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        body {
+            font-family: PlusJakartaSans;
+            background-color: #fff;
+            color: #171928;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            z-index: 1000;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        nav.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 5px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 5rem;
+        }
+
+        .nav-logo {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo img {
+            max-width: 180px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .logo img {
+            max-width: 150px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 2rem;
+            height: 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 2rem;
+            height: 2px;
+            background: #171928;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            position: relative;
+            display: block;
+            font-size: 14px;
+            color: #171928;
+            padding: 8px 15px;
+            border-radius: 20px;
+            opacity: 1;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: all 500ms ease;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            color: #9f6734;
+            background: rgba(252, 183, 136, 0.35);
+        }
+
+        .nav-link.active {
+            color: #9f6734;
+            background: rgba(252, 183, 136, 0.35);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 5rem;
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 5rem);
+                background-color: #fff;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 1.5rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            
+            .nav-link {
+                font-size: 1.1rem;
+                padding: 1rem 2rem;
+            }
+            
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-image: url('https://designs.teksolns.com/grandeur/mockup/assets/images/hero/hero.png');
+            background-size: cover;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-title span {
+            color: #e8d2b8;
+            display: block;
+        }
+
+        .hero-text {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #9f6734;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-btn:hover {
+            background-color: #e8d2b8;
+            color: #171928;
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: #f8f8f8;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .about-border {
+            border: 20px solid #e8d2b8;
+            padding: 75px 78px 65px;
+            position: relative;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #171928;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title .title-bg {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 5rem;
+            font-weight: 800;
+            color: rgba(159, 103, 52, 0.05);
+            z-index: -1;
+            white-space: nowrap;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #9f6734;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #9f6734;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .about-btn:hover {
+            background-color: #e8d2b8;
+            color: #171928;
+            transform: translateY(-3px);
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: #f8f8f8;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #9f6734;
+        }
+
+        .service-content p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            color: #9f6734;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .service-link i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-link:hover {
+            color: #171928;
+        }
+
+        .service-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Portfolio Section with Swiper */
+        .portfolio-section {
+            padding: 100px 0;
+            background-color: #f8f8f8;
+        }
+
+        .portfolio-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 500px;
+            margin-top: 50px;
+        }
+
+        .swiper-slide {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: rgba(23, 25, 40, 0.9);
+            color: white;
+            transition: all 0.5s ease;
+        }
+
+        .swiper-slide:hover .slide-content {
+            bottom: 0;
+        }
+
+        .slide-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #e8d2b8;
+        }
+
+        .slide-content p {
+            margin-bottom: 15px;
+        }
+
+        .portfolio-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #9f6734;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-btn:hover {
+            background-color: #e8d2b8;
+            color: #171928;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: #9f6734;
+            background: rgba(255, 255, 255, 0.8);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 1.5rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .testimonials-slider {
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: #f8f8f8;
+            padding: 40px;
+            border-radius: 10px;
+            margin: 0 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(159, 103, 52, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #555;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 1.2rem;
+            color: #171928;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: #9f6734;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background-color: #f8f8f8;
+            position: relative;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #9f6734;
+        }
+
+        .contact-info p {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #e8d2b8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #171928;
+            font-size: 1.2rem;
+        }
+
+        .info-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #171928;
+        }
+
+        .info-text p, .info-text a {
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .info-text a:hover {
+            color: #9f6734;
+        }
+
+        .contact-form {
+            flex: 1;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #171928;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #9f6734;
+            box-shadow: 0 0 0 3px rgba(159, 103, 52, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #9f6734;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #e8d2b8;
+            color: #171928;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #171928;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #e8d2b8;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #9f6734;
+        }
+
+        .footer-col p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #aaa;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: #9f6734;
+            transform: translateY(-3px);
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 8px;
+            color: #9f6734;
+            font-size: 0.8rem;
+        }
+
+        .footer-links a:hover {
+            color: #e8d2b8;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .swiper-container {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-text {
+                font-size: 1rem;
+            }
+            
+            .about-border {
+                padding: 50px 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title .title-bg {
+                font-size: 3.5rem;
+                top: -10px;
+            }
+            
+            .swiper-container {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .about-border {
+                border-width: 10px;
+                padding: 30px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title .title-bg {
+                font-size: 2.5rem;
+            }
+            
+            .swiper-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="mainNav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo">
+                    <img src="logo/logo.png" alt="Grandeur">
+                </a>
+            </div>
+            
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#academy" class="nav-link">Academy</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h4 class="hero-subtitle">By Dr. Shruthi</h4>
+            <h1 class="hero-title">Get Ready For <span>Beautiful Makeup Looks</span></h1>
+            <p class="hero-text">Experience the wedding of your dreams with our exquisite bridal package! Our team of professional makeup artists will make you look and feel your absolute best on your special day.</p>
+            <a href="#contact" class="hero-btn">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Grandeur</h2>
+                <div class="title-bg">About</div>
+            </div>
+            <div class="about-border">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Grandeur Artistry</h3>
+                        <p>Grandeur Artistry is the culmination of years of love for the art of grooming. What started as an interest in fashion, grooming and makeup, eventually evolved into a vision, to ensure the best services in these fields.</p>
+                        <p>With a wide range of hairstyling and grooming services offered by our dedicated and friendly staff, we ensure that all your grooming requirements are met in the best way possible.</p>
+                        <a href="#services" class="about-btn">Our Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="services-container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <div class="title-bg">Services</div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Bridal Makeup">
+                    </div>
+                    <div class="service-content">
+                        <h3>Bridal Makeup</h3>
+                        <p>Our bridal makeup services are designed to make you look radiant and feel confident on your special day. We use high-quality products that last all day.</p>
+                        <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Hair Styling">
+                    </div>
+                    <div class="service-content">
+                        <h3>Hair Styling</h3>
+                        <p>From elegant updos to flowing curls, our hairstylists create looks that complement your features and match your personal style.</p>
+                        <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1526758097130-bab247274f58?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Makeup Academy">
+                    </div>
+                    <div class="service-content">
+                        <h3>Makeup Academy</h3>
+                        <p>Learn professional makeup techniques from our experienced artists. We offer courses for beginners to advanced students.</p>
+                        <a href="#academy" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="portfolio-container">
+            <div class="section-title">
+                <h2>Our Portfolio</h2>
+                <div class="title-bg">Portfolio</div>
+            </div>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Makeup Work">
+                        <div class="slide-content">
+                            <h3>Bridal Makeup</h3>
+                            <p>Traditional South Indian bridal look with gold accents and bold eyes.</p>
+                            <a href="#" class="portfolio-btn">View More</a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Makeup Work">
+                        <div class="slide-content">
+                            <h3>Contemporary Look</h3>
+                            <p>Modern makeup with soft tones and glowing skin for a fresh appearance.</p>
+                            <a href="#" class="portfolio-btn">View More</a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Makeup Work">
+                        <div class="slide-content">
+                            <h3>Glamorous Evening</h3>
+                            <p>Dramatic smokey eyes and bold lips for a night out or special event.</p>
+                            <a href="#" class="portfolio-btn">View More</a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Makeup Work">
+                        <div class="slide-content">
+                            <h3>Natural Beauty</h3>
+                            <p>Enhancing natural features with minimal makeup for an everyday look.</p>
+                            <a href="#" class="portfolio-btn">View More</a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Makeup Work">
+                        <div class="slide-content">
+                            <h3>Editorial Style</h3>
+                            <p>Creative and artistic makeup looks for photoshoots and special occasions.</p>
+                            <a href="#" class="portfolio-btn">View More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academy Section -->
+    <section class="about-section" id="academy">
+        <div class="container">
+            <div class="section-title">
+                <h2>Grandeur Academy</h2>
+                <div class="title-bg">Academy</div>
+            </div>
+            <div class="about-border">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Learn From the Best</h3>
+                        <p>Our makeup academy offers comprehensive courses taught by industry professionals. Whether you're a beginner looking to learn the basics or an experienced artist wanting to refine your skills, we have a program for you.</p>
+                        <p>Our curriculum covers all aspects of professional makeup artistry, including bridal makeup, special effects, fashion makeup, and more. We provide hands-on training with the latest products and techniques.</p>
+                        <a href="#contact" class="about-btn">Enquire Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="testimonials-container">
+            <div class="section-title">
+                <h2>Client Testimonials</h2>
+                <div class="title-bg">Reviews</div>
+            </div>
+            <div class="testimonials-slider swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">I couldn't have asked for a better makeup artist for my wedding. The team at Grandeur understood exactly the look I wanted and executed it perfectly. I felt like a princess all day!</p>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya K.">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Priya K.</h4>
+                                    <p>Bride</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">The makeup academy changed my life! I went from knowing nothing about makeup to becoming a professional artist in just 6 months. The instructors are incredibly knowledgeable.</p>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ananya S.">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Ananya S.</h4>
+                                    <p>Makeup Artist</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">As a photographer, I've worked with many makeup artists, but Grandeur stands out. Their work photographs beautifully and they understand how makeup translates on camera.</p>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul M.">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Rahul M.</h4>
+                                    <p>Photographer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">The team did makeup for our entire bridal party and everyone looked stunning. They were professional, punctual, and made us all feel comfortable. Highly recommend!</p>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="https://randomuser.me/api/portraits/women/25.jpg" alt="Neha P.">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Neha P.</h4>
+                                    <p>Bride</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>Ready to book your appointment or have questions about our services? Contact us today and our team will be happy to assist you.</p>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Our Location</h4>
+                        <p>123 Beauty Street, Makeup City, MC 12345</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Call Us</h4>
+                        <a href="tel:+1234567890">+1 (234) 567-890</a>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Email Us</h4>
+                        <a href="mailto:info@grandeur.com">info@grandeur.com</a>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Working Hours</h4>
+                        <p>Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service Interested In</label>
+                        <select id="service" class="form-control">
+                            <option value="">Select a service</option>
+                            <option value="bridal">Bridal Makeup</option>
+                            <option value="hairstyling">Hair Styling</option>
+                            <option value="academy">Makeup Academy</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" class="form-control" rows="5"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>About Grandeur</h3>
+                <p>Grandeur Artistry is dedicated to providing exceptional makeup and grooming services. Our team of professionals is committed to making you look and feel your best.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="#portfolio"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                    <li><a href="#academy"><i class="fas fa-chevron-right"></i> Academy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Bridal Makeup</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Hair Styling</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Makeup Classes</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Special Occasion</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Editorial Makeup</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Beauty Street, Makeup City</a></li>
+                    <li><a href="tel:+1234567890"><i class="fas fa-phone-alt"></i> +1 (234) 567-890</a></li>
+                    <li><a href="mailto:info@grandeur.com"><i class="fas fa-envelope"></i> info@grandeur.com</a></li>
+                    <li><a href="#"><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 7:00 PM</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Grandeur Artistry. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #9f6734;"></i> by Your Team</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navLinksItems.forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                
+                // Update active link
+                navLinksItems.forEach(link => link.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+
+        // Scroll Navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Initialize Swiper for Portfolio
+        const portfolioSwiper = new Swiper('.portfolio-section .swiper-container', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                992: {
+                    slidesPerView: 3,
+                }
+            }
+        });
+
+        // Initialize Swiper for Testimonials
+        const testimonialSwiper = new Swiper('.testimonials-slider', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                }
+            }
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Section Animation
+        gsap.from('.hero-subtitle', {
+            duration: 1,
+            opacity: 0,
+            y: 20,
+            ease: "power3.out"
+        });
+
+        gsap.from('.hero-title', {
+            duration: 1,
+            opacity: 0,
+            y: 30,
+            delay: 0.3,
+            ease: "power3.out"
+        });
+
+        gsap.from('.hero-text', {
+            duration: 1,
+            opacity: 0,
+            y: 30,
+            delay: 0.6,
+            ease: "power3.out"
+        });
+
+        gsap.from('.hero-btn', {
+            duration: 1,
+            opacity: 0,
+            y: 30,
+            delay: 0.9,
+            ease: "power3.out"
+        });
+
+        // Section Animations
+        gsap.utils.toArray('section').forEach(section => {
+            if (section.id !== 'home') {
+                gsap.from(section, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    ease: "power3.out"
+                });
+            }
+        });
+
+        // Service Card Animations
+        gsap.utils.toArray('.service-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                delay: i * 0.1,
+                ease: "power3.out"
+            });
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
