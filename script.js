@@ -226,65 +226,6 @@ gsap.utils.toArray(".footer-col").forEach((col, index) => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const gallery = document.querySelector('.horizontal-gallery');
-    const track = document.querySelector('.gallery-track');
-    const items = document.querySelectorAll('.gallery-item');
-    
-    if (!gallery || !track || items.length === 0) return;
-    
-    // Clone items for infinite scroll
-    track.innerHTML += track.innerHTML;
-    
-    let isScrolling = false;
-    let scrollSpeed = 1.5;
-    let scrollPos = 0;
-    
-    function autoScroll() {
-        if (!isScrolling) {
-            scrollPos += scrollSpeed;
-            
-            // Reset to start when reaching halfway
-            if (scrollPos >= track.scrollWidth / 2) {
-                scrollPos = 0;
-            }
-            
-            gallery.scrollLeft = scrollPos;
-            requestAnimationFrame(autoScroll);
-        }
-    }
-    
-    // Start auto-scroll after a delay
-    setTimeout(() => {
-        autoScroll();
-        
-        // Pause on hover
-        gallery.addEventListener('mouseenter', () => {
-            isScrolling = true;
-        });
-        
-        gallery.addEventListener('mouseleave', () => {
-            isScrolling = false;
-            autoScroll();
-        });
-        
-        // Touch events for mobile
-        gallery.addEventListener('touchstart', () => {
-            isScrolling = true;
-        });
-        
-        gallery.addEventListener('touchend', () => {
-            isScrolling = false;
-            autoScroll();
-        });
-    }, 1000);
-    
-    // Adjust speed based on device
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        scrollSpeed = 1;
-    }
-});
-
 document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
     toggle.addEventListener('click', function(e) {
         if (window.innerWidth <= 768) {
@@ -372,6 +313,54 @@ document.addEventListener('DOMContentLoaded', function() {
                 scale: 1,
                 duration: 0.5
             });
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const gallery = document.querySelector('.horizontal-gallery');
+    const track = document.querySelector('.gallery-track');
+
+    if (!gallery || !track) return;
+
+    track.innerHTML += track.innerHTML;
+
+    let scrollSpeed = 1.5;
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        scrollSpeed = 1;
+    }
+
+    function autoScroll() {
+        gallery.scrollLeft += scrollSpeed;
+
+        if (gallery.scrollLeft >= track.scrollWidth / 2) {
+            gallery.scrollLeft = 0;
+        }
+
+        requestAnimationFrame(autoScroll);
+    }
+
+    autoScroll();
+
+    // Animate gallery-item images height from 0 to original on scroll into view
+    const galleryItems = track.querySelectorAll('.gallery-item img');
+    galleryItems.forEach(img => {
+        // Store original height
+        const originalHeight = img.offsetHeight;
+        // Set initial height to 0 and hide overflow
+        img.style.height = '0px';
+        img.style.overflow = 'hidden';
+
+        gsap.to(img, {
+            scrollTrigger: {
+                trigger: img,
+                start: "top 90%",
+                toggleActions: "play none none none",
+                once: true
+            },
+            height: originalHeight,
+            duration: 0.8,
+            ease: "power2.out"
         });
     });
 });

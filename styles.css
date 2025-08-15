@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'PP Mori';
+    src: url('/fonts/PPMori-Regular.woff2') format('woff2');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'PP Mori Light';
+    src: url('/fonts/PPMori-Extralight.woff2') format('woff2');
+    font-weight: 200; /* Helps browsers auto-select light weight */
+}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,7 +15,7 @@
 }
 
 body {
-    font-family: 'Vogun', sans-serif;
+    font-family: 'PP Mori', sans-serif;
     color: #171928;
     overflow-x: hidden;
 }
