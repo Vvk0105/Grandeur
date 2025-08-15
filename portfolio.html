@@ -25,10 +25,10 @@
             </button>
             
             <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <div class="dropdown">
-                    <a href="#services" class="nav-link active dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                    <a href="#services" class="nav-link dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
                         <a href="wedding-makeup.html" class="dropdown-item">Wedding Makeup</a>
                         <a href="engagement-makeup.html" class="dropdown-item">Engagement Makeup</a>
@@ -49,88 +49,78 @@
     </nav>
     <div class="main">
 
-        <section class="services-listing">
-            <div class="services-container">
-                <div class="breadcrumbs">Home > Services > Engagement Day Makeup</div>
-                
-                <div class="service-header">
-                    <h1>Engagement Day Makeup</h1>
-                    <p>Engagement is the first pre-wedding ceremony in most cultures and you would definitely want to stand out as you step into the first phase of a new life journey.</p>
-                    <p>When it comes to engagement makeup, it is meant to be different as it is neither as light as party makeup nor as heavy as bridal makeup. Based on your expectations, outfit, time and theme of the event, we help you decide the best engagement makeup look for you.</p>
-                </div>
-                
-                <div class="service-content">
-                    <div class="service-image">
-                        <img src="images/2.png" alt="Engagement Makeup">
-                    </div>
-                    <div class="service-details">
-                        <h2>Our Expertise</h2>
-                        <p>Our makeup artists specialize in creating the perfect engagement look that enhances your natural beauty while complementing your outfit and jewelry. We understand that engagement photos last a lifetime, and we ensure you look flawless in every picture.</p>
-                        
-                        <h3>We Offer</h3>
-                        <ul class="service-list">
-                            <li>Natural & Dewy Engagement Looks</li>
-                            <li>Traditional Engagement Makeup</li>
-                            <li>Contemporary Glam Styles</li>
-                            <li>Outdoor/Indoor Appropriate Makeup</li>
-                            <li>Makeup That Lasts All Day/Night</li>
-                        </ul>
-                        
-                        <h3>Our Process</h3>
-                        <p>We begin with a consultation to understand your vision, outfit colors, and personal style. Our team then creates a customized makeup plan that includes skin preparation, color matching, and setting techniques to ensure your makeup stays perfect throughout your special event.</p>
-                    </div>
+        <section class="portfolio-section">
+            <div class="portfolio-header">
+                <h2>Our Photo Gallery</h2>
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="hindu">Hindu Wedding</button>
+                    <button class="filter-btn" data-filter="christian">Christian Wedding</button>
+                    <button class="filter-btn" data-filter="muslim">Muslim Wedding</button>
                 </div>
             </div>
-        </section>
-
-        <!-- Vertical Image Gallery Section -->
-        <section class="gallery-section">
-            <div class="gallery-container">
-                <div class="gallery-header">
-                    <h2>Our Engagement Makeup Gallery</h2>
-                    <p>See our previous engagement makeup transformations</p>
-                </div>
-                
-                <div class="horizontal-gallery">
-                    <div class="gallery-track">
-                        <div class="gallery-item">
-                            <img src="images/gallery2/2a.png" alt="Engagement Makeup 1">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="images/gallery2/2b.png" alt="Engagement Makeup 2">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="images/gallery2/2c.png" alt="Engagement Makeup 3">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="images/gallery2/2d.png" alt="Engagement Makeup 4">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="images/gallery2/2b.png" alt="Engagement Makeup 5">
-                        </div>
-                        <!-- Duplicate items for seamless looping -->
-                        <div class="gallery-item">
-                            <img src="images/gallery2/2a.png" alt="Engagement Makeup 1">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="images/gallery2/2b.png" alt="Engagement Makeup 2">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="images/gallery2/2c.png" alt="Engagement Makeup 3">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="images/gallery2/2d.png" alt="Engagement Makeup 4">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="images/gallery2/2b.png" alt="Engagement Makeup 5">
-                        </div>
+            
+            <div class="portfolio-grid">
+                <!-- Hindu Wedding Images -->
+                <div class="portfolio-item hindu" data-category="hindu">
+                    <img src="images/gallery1/3a.png" alt="Hindu Wedding 1">
+                    <div class="portfolio-overlay">
+                        <h3>Hindu Wedding</h3>
                     </div>
                 </div>
+                <div class="portfolio-item hindu" data-category="hindu">
+                    <img src="images/gallery1/3b.png" alt="Hindu Wedding 2">
+                    <div class="portfolio-overlay">
+                        <h3>Hindu Wedding</h3>
+                    </div>
+                </div>
+
+                <!-- Christian Wedding Images -->
+                <div class="portfolio-item christian" data-category="christian">
+                    <img src="images/gallery1/3c.png" alt="Christian Wedding 1">
+                    <div class="portfolio-overlay">
+                        <h3>Christian Wedding</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item christian" data-category="christian">
+                    <img src="images/gallery1/3d.png" alt="Christian Wedding 2">
+                    <div class="portfolio-overlay">
+                        <h3>Christian Wedding</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item christian" data-category="christian">
+                    <img src="images/gallery2/2a.png" alt="Christian Wedding 2">
+                    <div class="portfolio-overlay">
+                        <h3>Christian Wedding</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item christian" data-category="christian">
+                    <img src="images/gallery2/2b.png" alt="Christian Wedding 2">
+                    <div class="portfolio-overlay">
+                        <h3>Christian Wedding</h3>
+                    </div>
+                </div>
+                <!-- Add 8 more christian images -->
+
+                <!-- Muslim Wedding Images -->
+                <div class="portfolio-item muslim" data-category="muslim">
+                    <img src="images/muslim wedding/1.jpg" alt="Muslim Wedding 1">
+                    <div class="portfolio-overlay">
+                        <h3>Muslim Wedding</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item muslim" data-category="muslim">
+                    <img src="images/muslim wedding/2.jpg" alt="Muslim Wedding 2">
+                    <div class="portfolio-overlay">
+                        <h3>Muslim Wedding</h3>
+                    </div>
+                </div>
+                <!-- Add 8 more muslim images -->
             </div>
         </section>
 
 
-        <footer class="footer">
+    <footer class="footer">
             <div class="footer-container">
                 <!-- About Column -->
                 <div class="footer-col" id="footer-about">
@@ -173,6 +163,10 @@
             </div>
         </footer>
     </div>
+    
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" integrity="sha512-wOeEC+9qERAzhliwBFPDb6t8TiFFxdxG8vhK/Ygs7TuC44bpg8pg/X2/U/u+0X4fK05wb9id1EIipnF02+CFQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -181,3 +175,6 @@
     
 </body>
 </html>
+
+
+    

@@ -293,3 +293,84 @@ document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Filter buttons
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    
+    // Animate items on load
+    gsap.utils.toArray('.portfolio-item').forEach((item, i) => {
+        gsap.to(item, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: i * 0.05,
+            ease: "power2.out"
+        });
+    });
+    
+    // Filter functionality
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filter = this.dataset.filter;
+            
+            // Animate out all items
+            gsap.to('.portfolio-item', {
+                opacity: 0,
+                y: 30,
+                duration: 0.5,
+                onComplete: filterItems,
+                onCompleteParams: [filter]
+            });
+        });
+    });
+    
+    function filterItems(filter) {
+        portfolioItems.forEach(item => {
+            if (filter === 'all' || item.dataset.category === filter) {
+                // Animate in filtered items
+                gsap.to(item, {
+                    display: 'block',
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: Math.random() * 0.3,
+                    ease: "power2.out"
+                });
+            } else {
+                // Hide other items
+                gsap.set(item, { display: 'none' });
+            }
+        });
+    }
+    
+    // Hover animations
+    portfolioItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            gsap.to(item.querySelector('.portfolio-overlay'), {
+                opacity: 1,
+                duration: 0.3
+            });
+            gsap.to(item.querySelector('img'), {
+                scale: 1.05,
+                duration: 0.5
+            });
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            gsap.to(item.querySelector('.portfolio-overlay'), {
+                opacity: 0,
+                duration: 0.3
+            });
+            gsap.to(item.querySelector('img'), {
+                scale: 1,
+                duration: 0.5
+            });
+        });
+    });
+});
