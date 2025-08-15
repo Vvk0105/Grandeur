@@ -66,7 +66,8 @@ split = SplitText.create(".about-grandeur", {
                 start: "top 45%",
                 end: "bottom 20%",
                 toggleActions: "play none none none",
-                once: true
+                once: true,
+                // markers: true
             }
         });
         return split;
