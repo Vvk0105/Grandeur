@@ -333,19 +333,19 @@ nav.scrolled .logo img {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
 .about-border {
-    border: 20px solid #e8d2b8;
-    padding: 75px;
-    background: white;
+    /* border: 20px solid #e8d2b8; */
+    padding: 2.6rem;
+    /* background: white; */
 }
 
 .about-content h3 {
-    font-size: 1.8rem;
+    font-size: 2.8rem;
     color: #9f6734;
     margin-bottom: 20px;
     text-align: center;
@@ -354,7 +354,7 @@ nav.scrolled .logo img {
 .about-content p {
     margin-bottom: 20px;
     line-height: 1.8;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     text-align: center;
 }
 
@@ -644,6 +644,7 @@ nav.scrolled .logo img {
     background-image: url('images/hero.png');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     z-index: 1;
 }
 

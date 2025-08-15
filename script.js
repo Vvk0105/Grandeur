@@ -48,18 +48,24 @@ gsap.utils.toArray(".service-item").forEach((service, index) => {
 });
 
 // Split text animation
+// Split text animation
 gsap.registerPlugin(SplitText);
-split = SplitText.create(".about-grandeur", {
-    type: "words,lines",
-    linesClass: "line",
-    autoSplit: true,
-    mask: "lines",
-    onSplit: (self) => {
-        split = gsap.from(self.lines, {
-            duration: 2,
+
+document.addEventListener('DOMContentLoaded', function () {
+    const aboutText = document.querySelector('.about-grandeur');
+    if (aboutText) {
+        const split = new SplitText(aboutText, {
+            type: "lines,words",
+            linesClass: "line",
+            wordsClass: "word",
+            mask: "lines"
+        });
+
+        gsap.from(split.lines, {
             yPercent: 100,
             opacity: 0,
-            stagger: 0.1,
+            duration: 1.5,
+            stagger: 0.08,
             ease: "expo.out",
             scrollTrigger: {
                 trigger: ".about-section",
@@ -67,12 +73,36 @@ split = SplitText.create(".about-grandeur", {
                 end: "bottom 20%",
                 toggleActions: "play none none none",
                 once: true,
-                // markers: true
             }
         });
-        return split;
     }
 });
+
+// gsap.registerPlugin(SplitText);
+// split = SplitText.create(".about-grandeur", {
+//     type: "words,lines",
+//     linesClass: "line",
+//     autoSplit: true,
+//     mask: "lines",
+//     onSplit: (self) => {
+//         split = gsap.from(self.lines, {
+//             duration: 2,
+//             yPercent: 100,
+//             opacity: 0,
+//             stagger: 0.1,
+//             ease: "expo.out",
+//             scrollTrigger: {
+//                 trigger: ".about-section",
+//                 start: "top 45%",
+//                 end: "bottom 20%",
+//                 toggleActions: "play none none none",
+//                 once: true,
+//                 // markers: true
+//             }
+//         });
+//         return split;
+//     }
+// });
 
 // Academy animations
 gsap.to(".academy-content", {
@@ -342,12 +372,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     autoScroll();
 
-    // Animate gallery-item images height from 0 to original on scroll into view
     const galleryItems = track.querySelectorAll('.gallery-item img');
     galleryItems.forEach(img => {
-        // Store original height
         const originalHeight = img.offsetHeight;
-        // Set initial height to 0 and hide overflow
+
         img.style.height = '0px';
         img.style.overflow = 'hidden';
 
