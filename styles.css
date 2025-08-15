@@ -145,6 +145,102 @@ nav.scrolled .logo img {
     }
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dropdown-toggle i {
+    font-size: 10px;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 250px;
+    background-color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 15px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 8px 20px;
+    color: #171928;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-transform: none;
+    font-weight: normal;
+}
+
+.dropdown-item:hover {
+    color: #9f6734;
+    background-color: rgba(252, 183, 136, 0.15);
+}
+
+/* Mobile dropdown styles */
+@media (max-width: 768px) {
+    .dropdown {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        padding: 0;
+        background-color: transparent;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+    
+    .dropdown-item {
+        padding: 12px 20px;
+        color: #171928;
+    }
+    
+    .dropdown-toggle i {
+        transform: rotate(0deg);
+    }
+    
+    .dropdown.active .dropdown-toggle i {
+        transform: rotate(180deg);
+    }
+}
+
 /* Hero Section - Enhanced */
 .hero-section {
     background-image: url('https://designs.teksolns.com/grandeur/mockup/assets/images/hero/hero.png');

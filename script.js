@@ -283,3 +283,13 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollSpeed = 1;
     }
 });
+
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            const dropdown = this.closest('.dropdown');
+            dropdown.classList.toggle('active');
+        }
+    });
+});
