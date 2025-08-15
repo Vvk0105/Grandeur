@@ -1,5 +1,5 @@
+// Fade-in elements on scroll
 const fadeElements = document.querySelectorAll('.fade-in');
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -10,8 +10,9 @@ const observer = new IntersectionObserver((entries) => {
 
 fadeElements.forEach(el => observer.observe(el));
 
-document.querySelector('.hero-content').classList.add('visible');
+document.querySelector('.hero-content')?.classList.add('visible');
 
+// Navbar scroll effect
 window.addEventListener('scroll', () => {
     const nav = document.getElementById('mainNav');
     if (window.scrollY > 50) {
@@ -21,13 +22,14 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// GSAP Animations
 gsap.registerPlugin(ScrollTrigger);
 
+// Services section animation
 gsap.utils.toArray(".service-item").forEach((service, index) => {
     const xPos = index % 2 === 0 ? -100 : 100;
-    
     gsap.set(service, { x: xPos, opacity: 0 });
-    
+
     ScrollTrigger.create({
         trigger: service,
         start: "top 70%",
@@ -45,6 +47,7 @@ gsap.utils.toArray(".service-item").forEach((service, index) => {
     });
 });
 
+// Split text animation
 gsap.registerPlugin(SplitText);
 split = SplitText.create(".about-grandeur", {
     type: "words,lines",
@@ -52,134 +55,130 @@ split = SplitText.create(".about-grandeur", {
     autoSplit: true,
     mask: "lines",
     onSplit: (self) => {
-      split = gsap.from(self.lines, {
-        duration: 2,
-        yPercent: 100,
-        opacity: 0,
-        stagger: 0.1,
-        ease: "expo.out",
-        scrollTrigger: {
-            trigger: ".about-section",
-            // scroller: ".main",
-            start: "top 45%",
-            end: "bottom 20%",
-            toggleActions: "play none none none",
-            // markers: true,
-            once: true
-        }
-      });
-      return split;
+        split = gsap.from(self.lines, {
+            duration: 2,
+            yPercent: 100,
+            opacity: 0,
+            stagger: 0.1,
+            ease: "expo.out",
+            scrollTrigger: {
+                trigger: ".about-section",
+                start: "top 45%",
+                end: "bottom 20%",
+                toggleActions: "play none none none",
+                once: true
+            }
+        });
+        return split;
     }
-  });
+});
 
-    gsap.to(".academy-content", {
+// Academy animations
+gsap.to(".academy-content", {
+    scrollTrigger: {
+        trigger: ".academy-section",
+        start: "top 70%",
+        toggleActions: "play none none none"
+    },
+    x: 0,
+    opacity: 1,
+    duration: 0.8,
+    ease: "power2.out"
+});
+
+gsap.to(".academy-image", {
+    scrollTrigger: {
+        trigger: ".academy-section",
+        start: "top 70%",
+        toggleActions: "play none none none"
+    },
+    x: 0,
+    opacity: 1,
+    duration: 0.8,
+    ease: "power2.out",
+    delay: 0.2
+});
+
+// Expect section animation
+gsap.to(".expect-header", {
+    scrollTrigger: {
+        trigger: ".expect-section",
+        start: "top 70%",
+        toggleActions: "play none none none"
+    },
+    y: 0,
+    opacity: 1,
+    duration: 0.8,
+    ease: "power2.out"
+});
+
+gsap.utils.toArray(".expect-card").forEach((card, i) => {
+    gsap.to(card, {
         scrollTrigger: {
-            trigger: ".academy-section",
-            start: "top 70%",
+            trigger: card,
+            start: "top 80%",
             toggleActions: "play none none none"
         },
-        x: 0,
+        y: 0,
         opacity: 1,
-        duration: 0.8,
-        ease: "power2.out"
-    });
-
-    gsap.to(".academy-image", {
-        scrollTrigger: {
-            trigger: ".academy-section",
-            start: "top 70%",
-            toggleActions: "play none none none"
-        },
-        x: 0,
-        opacity: 1,
-        duration: 0.8,
+        duration: 0.6,
         ease: "power2.out",
-        delay: 0.2
+        delay: i * 0.1
     });
+});
 
-    gsap.to(".expect-header", {
+// Gorgeous section animation
+gsap.to(".gorgeous-content", {
+    scrollTrigger: {
+        trigger: ".gorgeous-section",
+        start: "top 70%",
+        toggleActions: "play none none none"
+    },
+    y: 0,
+    opacity: 1,
+    duration: 0.8,
+    ease: "power2.out"
+});
+
+// Gallery items animation
+gsap.utils.toArray(".gallery-item").forEach((item, i) => {
+    gsap.to(item, {
         scrollTrigger: {
-            trigger: ".expect-section",
-            start: "top 70%",
+            trigger: item,
+            start: "top 80%",
             toggleActions: "play none none none"
         },
-        y: 0,
+        scale: 1,
         opacity: 1,
-        duration: 0.8,
-        ease: "power2.out"
+        duration: 0.6,
+        ease: "power2.out",
+        delay: i * 0.1
     });
+});
 
-    gsap.utils.toArray(".expect-card").forEach((card, i) => {
-        gsap.to(card, {
-            scrollTrigger: {
-                trigger: card,
-                start: "top 80%",
-                toggleActions: "play none none none"
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            ease: "power2.out",
-            delay: i * 0.1
-        });
+// Hamburger menu
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+const navLinksItems = document.querySelectorAll('.nav-links a');
+
+hamburger?.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+});
+
+navLinksItems.forEach(item => {
+    item.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        navLinksItems.forEach(link => link.classList.remove('active'));
+        item.classList.add('active');
     });
+});
 
-    gsap.to(".gorgeous-content", {
-        scrollTrigger: {
-            trigger: ".gorgeous-section",
-            start: "top 70%",
-            toggleActions: "play none none none"
-        },
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power2.out"
-    });
-
-    gsap.utils.toArray(".gallery-item").forEach((item, i) => {
-        gsap.to(item, {
-            scrollTrigger: {
-                trigger: item,
-                start: "top 80%",
-                toggleActions: "play none none none"
-            },
-            scale: 1,
-            opacity: 1,
-            duration: 0.6,
-            ease: "power2.out",
-            delay: i * 0.1
-        });
-    });
-
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const navLinksItems = document.querySelectorAll('.nav-links a');
-
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
-
-    navLinksItems.forEach(item => {
-        item.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-            
-            navLinksItems.forEach(link => link.classList.remove('active'));
-            item.classList.add('active');
-        });
-    });
-
-    window.addEventListener('scroll', () => {
-        const nav = document.getElementById('mainNav');
-        if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-    });
-
-    const portfolioSwiper = new Swiper('.portfolio-section .swiper-container', {
+// Swiper sliders
+const portfolioSwiper = document.querySelector('.portfolio-section .swiper-container');
+if (portfolioSwiper) {
+    new Swiper(portfolioSwiper, {
         loop: true,
         slidesPerView: 1,
         spaceBetween: 20,
@@ -188,16 +187,15 @@ split = SplitText.create(".about-grandeur", {
             prevEl: '.swiper-button-prev',
         },
         breakpoints: {
-            768: {
-                slidesPerView: 2,
-            },
-            992: {
-                slidesPerView: 3,
-            }
+            768: { slidesPerView: 2 },
+            992: { slidesPerView: 3 }
         }
     });
+}
 
-    const testimonialSwiper = new Swiper('.testimonials-slider', {
+const testimonialSwiper = document.querySelector('.testimonials-slider');
+if (testimonialSwiper) {
+    new Swiper(testimonialSwiper, {
         loop: true,
         slidesPerView: 1,
         spaceBetween: 30,
@@ -206,24 +204,82 @@ split = SplitText.create(".about-grandeur", {
             clickable: true,
         },
         breakpoints: {
-            768: {
-                slidesPerView: 2,
-            }
+            768: { slidesPerView: 2 }
         }
     });
+}
 
-    // Footer animations
-    gsap.utils.toArray(".footer-col").forEach((col, index) => {
-        gsap.to(col, {
-            scrollTrigger: {
-                trigger: ".footer",
-                start: "top 70%",
-                toggleActions: "play none none none"
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            ease: "power2.out",
-            delay: index * 0.1
-        });
+// Footer animations
+gsap.utils.toArray(".footer-col").forEach((col, index) => {
+    gsap.to(col, {
+        scrollTrigger: {
+            trigger: ".footer",
+            start: "top 70%",
+            toggleActions: "play none none none"
+        },
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: index * 0.1
     });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const gallery = document.querySelector('.horizontal-gallery');
+    const track = document.querySelector('.gallery-track');
+    const items = document.querySelectorAll('.gallery-item');
+    
+    if (!gallery || !track || items.length === 0) return;
+    
+    // Clone items for infinite scroll
+    track.innerHTML += track.innerHTML;
+    
+    let isScrolling = false;
+    let scrollSpeed = 1.5;
+    let scrollPos = 0;
+    
+    function autoScroll() {
+        if (!isScrolling) {
+            scrollPos += scrollSpeed;
+            
+            // Reset to start when reaching halfway
+            if (scrollPos >= track.scrollWidth / 2) {
+                scrollPos = 0;
+            }
+            
+            gallery.scrollLeft = scrollPos;
+            requestAnimationFrame(autoScroll);
+        }
+    }
+    
+    // Start auto-scroll after a delay
+    setTimeout(() => {
+        autoScroll();
+        
+        // Pause on hover
+        gallery.addEventListener('mouseenter', () => {
+            isScrolling = true;
+        });
+        
+        gallery.addEventListener('mouseleave', () => {
+            isScrolling = false;
+            autoScroll();
+        });
+        
+        // Touch events for mobile
+        gallery.addEventListener('touchstart', () => {
+            isScrolling = true;
+        });
+        
+        gallery.addEventListener('touchend', () => {
+            isScrolling = false;
+            autoScroll();
+        });
+    }, 1000);
+    
+    // Adjust speed based on device
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        scrollSpeed = 1;
+    }
+});
