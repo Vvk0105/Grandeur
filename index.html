@@ -4,125 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grandeur - Professional Makeup</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="mainNav">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html" class="logo">
-                    <img src="logo/logo.png" alt="Grandeur">
-                </a>
-            </div>
-            
-            <button class="hamburger" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <div class="nav-links">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <div class="dropdown">
-                    <a href="#services" class="nav-link dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-menu">
-                        <a href="wedding-makeup.html" class="dropdown-item">Wedding Makeup</a>
-                        <a href="engagement-makeup.html" class="dropdown-item">Engagement Makeup</a>
-                        <a href="#" class="dropdown-item">Wedding Reception Makeup</a>
-                        <a href="#" class="dropdown-item">Wedding Guest Makeup</a>
-                        <a href="#" class="dropdown-item">Groom Styling Makeup</a>
-                        <a href="#" class="dropdown-item">Advertising Makeup</a>
-                        <a href="#" class="dropdown-item">Celebrity Makeup</a>
-                        <a href="#" class="dropdown-item">Life Events Makeup</a>
-                    </div>
-                </div>
-                <a href="portfolio.html" class="nav-link">Portfolio</a>
-                <a href="#academy" class="nav-link">Academy</a>
-                <a href="#testimonials" class="nav-link">Testimonials</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
+    <div class="intro-loader" id="introLoader">
+        <img src="logo/images-removebg-preview.png" alt="Grandeur" class="loader-logo">
+        <div class="loader-text">GRANDEUR ARTISTRY</div>
+        <div class="loader-progress">
+            <div class="loader-progress-bar" id="progressBar"></div>
         </div>
-    </nav>
-    <div class="main">
+        <div class="loader-quote">"Enhancing your natural beauty with expert artistry"</div>
+        
+        <!-- Animated makeup brushes -->
+        <div class="makeup-brush" style="top: 30%; left: 20%; transform: rotate(30deg);">
+            <div class="brush-handle"></div>
+            <div class="brush-bristles"></div>
+        </div>
+        <div class="makeup-brush" style="top: 60%; right: 25%; transform: rotate(-15deg);">
+            <div class="brush-handle"></div>
+            <div class="brush-bristles"></div>
+        </div>
+    </div>
+    <div class="main-content" id="mainContent">
+        <!-- Navigation -->
+        <nav id="mainNav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html" class="logo">
+                        <img src="logo/images-removebg-preview.png" alt="Grandeur">
+                    </a>
+                </div>
+                
+                <button class="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="#academy" class="nav-link">Academy</a>
+                    <a href="#testimonials" class="nav-link">Testimonials</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </nav>
+
         <!-- Hero Section -->
         <section class="hero-section" id="home">
-            <div class="hero-overlay"></div>
-            <div class="hero-content fade-in">
+            <div class="floating-elements">
+                <div class="floating-element" style="width: 100px; height: 100px; top: 20%; left: 10%;"></div>
+                <div class="floating-element" style="width: 150px; height: 150px; top: 60%; left: 5%;"></div>
+                <div class="floating-element" style="width: 80px; height: 80px; top: 30%; right: 15%;"></div>
+                <div class="floating-element" style="width: 120px; height: 120px; bottom: 20%; right: 10%;"></div>
+            </div>
+            
+            <div class="hero-content">
                 <h4 class="hero-subtitle">By Dr. Shruthi</h4>
                 <h1 class="hero-title">Get Ready For <span>Beautiful Makeup Looks</span></h1>
                 <p class="hero-text">Experience the wedding of your dreams with our exquisite bridal package!</p>
-                <a href="#" class="hero-btn">Contact Us</a>
+                <a href="#contact" class="hero-btn">Contact Us</a>
             </div>
         </section>
-    
+
         <!-- About Section -->
         <section class="about-section" id="about">
-            <div class="container">
-                <div class="about-border">
-                    <div class="about-content">
-                        <h3>Experience the wedding of your dreams with our exquisite bridal package!</h3>
-                        <p class="about-grandeur">Grandeur Artistry is the culmination of years of love for the art of grooming. What started as an interest in fashion, grooming and makeup, eventually evolved into a vision, to ensure the best services in these fields.With a wide range of hairstyling and grooming services offered by our dedicated and friendly staff, we ensure that all your grooming requirements are met in the best way possible.</p>
-                    </div>
+            <div class="about-container">
+                <div class="about-content">
+                    <h3>Experience the wedding of your dreams with our exquisite bridal package!</h3>
+                    <p class="about-grandeur">Grandeur Artistry is the culmination of years of love for the art of grooming. What started as an interest in fashion, grooming and makeup, eventually evolved into a vision, to ensure the best services in these fields.With a wide range of hairstyling and grooming services offered by our dedicated and friendly staff, we ensure that all your grooming requirements are met in the best way possible.</p>
                 </div>
             </div>
         </section>
-    
+
+        <!-- Services Section -->
         <section class="services-section" id="services">
             <div class="services-container">
                 <div class="section-title">
                     <h2>What We Do</h2>
                 </div>
                 
-                <!-- Service 1 -->
-                <div class="service-item" id="service1">
-                    <div class="service-img">
-                        <img src="images/service-1.jpg" alt="Bridal Makeup">
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="images/service-1.jpg" alt="Bridal Makeup">
+                        </div>
+                        <div class="service-content">
+                            <h3>Bridal Makeup</h3>
+                            <p>Our team of expert makeup artists and hairstylists is dedicated to enhancing your natural beauty and creating a look that perfectly reflects your unique style and personality.</p>
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <h3>Bridal Makeup</h3>
-                        <p>Our team of expert makeup artists and hairstylists is dedicated to enhancing your natural beauty and creating a look that perfectly reflects your unique style and personality.</p>
+                    
+                    <!-- Service 2 -->
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="images/service-2.jpg" alt="Engagement Makeup">
+                        </div>
+                        <div class="service-content">
+                            <h3>Engagement Makeup</h3>
+                            <p>Engagement is a milestone worth cherishing forever. We use only premium-quality products and techniques to achieve long-lasting, photo-ready results.</p>
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Service 2 -->
-                <div class="service-item" id="service2">
-                    <div class="service-img">
-                        <img src="images/service-2.jpg" alt="Engagement Makeup">
+                    
+                    <!-- Service 3 -->
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="images/service-3.jpg" alt="Life Event Makeup">
+                        </div>
+                        <div class="service-content">
+                            <h3>Life Event Makeup</h3>
+                            <p>Life event makeup is a type of makeup application that is specifically designed for significant events or occasions in a person's life.</p>
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <h3>Engagement Makeup</h3>
-                        <p>Engagement is a milestone worth cherishing forever. We use only premium-quality products and techniques to achieve long-lasting, photo-ready results.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="service-item" id="service3">
-                    <div class="service-img">
-                        <img src="images/service-3.jpg" alt="Life Event Makeup">
-                    </div>
-                    <div class="service-content">
-                        <h3>Life Event Makeup</h3>
-                        <p>Life event makeup is a type of makeup application that is specifically designed for significant events or occasions in a person's life.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 4 -->
-                <div class="service-item" id="service4">
-                    <div class="service-img">
-                        <img src="images/service-4.jpg" alt="Advertising Makeup">
-                    </div>
-                    <div class="service-content">
-                        <h3>Advertising Makeup</h3>
-                        <p>From commercial shoots to print advertisements, we have the expertise to deliver flawless and striking makeup looks that perfectly align with your brand image.</p>
+                    
+                    <!-- Service 4 -->
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="images/service-4.jpg" alt="Advertising Makeup">
+                        </div>
+                        <div class="service-content">
+                            <h3>Advertising Makeup</h3>
+                            <p>From commercial shoots to print advertisements, we have the expertise to deliver flawless and striking makeup looks that perfectly align with your brand image.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Academy Section -->
         <section class="academy-section" id="academy">
             <div class="academy-container">
                 <div class="academy-content">
@@ -138,6 +153,7 @@
             </div>
         </section>
 
+        <!-- Expect Section -->
         <section class="expect-section">
             <div class="expect-container">
                 <div class="expect-header">
@@ -161,6 +177,7 @@
             </div>
         </section>
 
+        <!-- Gorgeous Section -->
         <section class="gorgeous-section">
             <div class="gorgeous-bg"></div>
             <div class="gorgeous-overlay"></div>
@@ -171,6 +188,7 @@
             </div>
         </section>
 
+        <!-- Gallery Section -->
         <section class="gallery-section">
             <div class="gallery-container">
                 <div class="gallery-header">
@@ -178,23 +196,58 @@
                     <p>GRANDUIR ARTISTRY</p>
                 </div>
                 <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/gallery1.jpg" alt="Makeup 1">
+                    <!-- Item 1 -->
+                    <div class="gallery-item fade-in" data-category="bridal">
+                        <img src="images/gallery1.jpg" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Elegant Bridal Makeup</h3>
+                            <p class="gallery-category">Bridal Collection</p>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="images/gallery2.jpg" alt="Makeup 2">
+                    
+                    <!-- Item 2 -->
+                    <div class="gallery-item fade-in" data-category="engagement">
+                        <img src="images/gallery2.jpg" alt="Engagement Glam" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Engagement Glam</h3>
+                            <p class="gallery-category">Engagement Collection</p>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="images/gallery3.jpg" alt="Makeup 3">
+                    
+                    <!-- Item 3 -->
+                    <div class="gallery-item fade-in" data-category="events">
+                        <img src="images/gallery3.jpg" alt="Evening Special" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Evening Special</h3>
+                            <p class="gallery-category">Special Events</p>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="images/gallery7.jpg" alt="Makeup 4">
+                    
+                    <!-- Item 4 -->
+                    <div class="gallery-item fade-in" data-category="creative">
+                        <img src="images/gallery5.jpg" alt="Artistic Expression" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Artistic Expression</h3>
+                            <p class="gallery-category">Creative Collection</p>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="images/gallery5.jpg" alt="Makeup 5">
+                    
+                    <!-- Item 5 -->
+                    <div class="gallery-item fade-in" data-category="bridal">
+                        <img src="images/gallery6.jpg" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Traditional Bride</h3>
+                            <p class="gallery-category">Bridal Collection</p>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="images/gallery6.jpg" alt="Makeup 6">
+                    
+                    <!-- Item 6 -->
+                    <div class="gallery-item fade-in" data-category="engagement">
+                        <img src="images/gallery7.jpg" alt="Romantic Look" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Romantic Look</h3>
+                            <p class="gallery-category">Engagement Collection</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -205,111 +258,108 @@
             <div class="testimonials-container">
                 <div class="section-title">
                     <h2>Client Testimonials</h2>
-                    <div class="title-bg">Reviews</div>
                 </div>
                 <div class="testimonials-slider swiper-container">
                     <div class="swiper-wrapper">
                         <div class="testimonial-card swiper-slide">
                             <div class="testimonial-content">
-                                <p class="testimonial-text">"Great service..! I'm glad that i met Dr.Sruthi Ma’am. I'm 100% satisfied. She is friendly and very patiently listens to my problems and takes care very well.This doctor and clinic staff has a very good approach towards their patients. I can see positive results, I will definitely recommend “Skin Health By Dr.Shruthi”</p>
+                                <p class="testimonial-text">"Great service..! I'm glad that i met Dr.Sruthi Ma'am. I'm 100% satisfied. She is friendly and very patiently listens to my problems and takes care very well.This doctor and clinic staff are very friendly and helpful."</p>
                                 <div class="testimonial-author">
-                                    <div class="author-img">
-                                        <!-- <img src="" alt="Priya K."> -->
-                                    </div>
+                                    <div class="author-img"></div>
                                     <div class="author-info">
-                                        <h4>Ammu R</h4>
-                                        <!-- <p>Bride</p> -->
+                                        <h4>Anjali</h4>
+                                        <p>Bridal Client</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="testimonial-card swiper-slide">
                             <div class="testimonial-content">
-                                <p class="testimonial-text">"Sruthi is someone who makes everyone super comfortable.. I had done couple of good treatments with them and all wear too good.. and ofcourse last but not the least , she did my wedding make up which was totally great”</p>
+                                <p class="testimonial-text">"I had an amazing experience with Grandeur Artistry. Dr. Shruthi is a talented makeup artist who understood exactly what I wanted for my wedding day. She made me look and feel like a princess!"</p>
                                 <div class="testimonial-author">
-                                    <div class="author-img">
-                                        <!-- <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ananya S."> -->
-                                    </div>
+                                    <div class="author-img"></div>
                                     <div class="author-info">
-                                        <h4>Brigit Thomas</h4>
-                                        <!-- <p>Makeup Artist</p> -->
+                                        <h4>Priya</h4>
+                                        <p>Bridal Client</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="testimonial-card swiper-slide">
                             <div class="testimonial-content">
-                                <p class="testimonial-text">"Good service for both gents and ladies. Offers a variety of services at reasonable rates. Good ambience. Easily located in the heart of the city. Parking space available on the roadside near the saloon. Neat and hygienic. Overall a nice and relaxing experience.”</p>
+                                <p class="testimonial-text">"The academy course was comprehensive and hands-on. I learned so much about bridal makeup techniques and now feel confident to start my own makeup artistry business. Highly recommend!"</p>
                                 <div class="testimonial-author">
-                                    <div class="author-img">
-                                        <!-- <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul M."> -->
-                                    </div>
+                                    <div class="author-img"></div>
                                     <div class="author-info">
-                                        <h4>Satish Kuruvila Alexander</h4>
-                                        <!-- <p>Photographer</p> -->
+                                        <h4>Meera</h4>
+                                        <p>Academy Student</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
                 </div>
             </div>
         </section>
 
-        <footer class="footer">
+        <!-- Footer -->
+        <footer class="footer" id="contact">
             <div class="footer-container">
-                <!-- About Column -->
-                <div class="footer-col" id="footer-about">
+                <div class="footer-col">
                     <h3>About Us</h3>
-                    <p>Grandeur's inception as a brand dates back to 2015 when our Founder & Chief MUA Dr Sinuthi Vijayan began working as a freelance makeup artist purely out of a passion towards fashion, styling and makeup.</p>
-                    
-                    <div class="footer-contact">
-                        <p>House No. 10 1, A Street Jawahar Nagar, Kowdiar</p>
-                        <p>Thiruvananthapuram, Kerala 695003 India</p>
-                        <p>0471 460 0016</p>
-                        <p>+91 999 521 2955</p>
-                    </div>
+                    <p>Grandeur Artistry is the culmination of years of love for the art of grooming. What started as an interest in fashion, grooming and makeup, eventually evolved into a vision, to ensure the best services in these fields.</p>
                 </div>
-                
-                <!-- Services Column -->
-                <div class="footer-col" id="footer-services">
+                <div class="footer-col">
                     <h3>Our Services</h3>
                     <ul class="footer-services">
-                        <li>Wedding Makeup</li>
+                        <li>Bridal Makeup</li>
                         <li>Engagement Makeup</li>
-                        <li>Celebrity Makeup</li>
+                        <li>Life Event Makeup</li>
                         <li>Advertising Makeup</li>
-                        <li>Life Events Makeup</li>
+                        <li>Makeup Academy</li>
                     </ul>
                 </div>
-                
-                <!-- Subscribe Column -->
-                <div class="footer-col" id="footer-subscribe">
-                    <h3>Subscribe Now</h3>
-                    <p>Stay updated with our latest offers and news</p>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="footer-contact">
+                        <p>+91 1234567890</p>
+                        <p>info@grandeur.com</p>
+                        <p>123 Beauty Street, Makeup City</p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Subscribe</h3>
+                    <p>Subscribe to our newsletter for the latest updates and offers.</p>
                     <form class="subscribe-form">
-                        <input type="email" placeholder="Your email here" class="subscribe-input" required>
-                        <button type="submit" class="subscribe-btn">Subscribe Now →</button>
+                        <input type="email" class="subscribe-input" placeholder="Your Email">
+                        <button type="submit" class="subscribe-btn">Subscribe</button>
                     </form>
                 </div>
             </div>
-            
-            <!-- <div class="footer-bottom">
-                <p>Copyright©2023 Grandeur. All rights reserved. Developed by Teknika Solutions</p>
-            </div> -->
+            <div class="footer-bottom">
+                <p>&copy; 2023 Grandeur Artistry. All Rights Reserved.</p>
+            </div>
         </footer>
+
+        <!-- Lightbox Modal -->
+        <div class="lightbox">
+            <div class="lightbox-content">
+                <button class="lightbox-close">&times;</button>
+                <img src="" alt="" class="lightbox-img">
+                <div class="lightbox-caption"></div>
+            </div>
+            <div class="lightbox-nav">
+                <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
     </div>
-    
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" integrity="sha512-wOeEC+9qERAzhliwBFPDb6t8TiFFxdxG8vhK/Ygs7TuC44bpg8pg/X2/U/u+0X4fK05wb9id1EIipnF02+CFQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
-    <script src="script.js" defer></script>
-    
+    <!-- GSAP and ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.45/dist/lenis.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
