@@ -477,4 +477,87 @@ document.addEventListener('DOMContentLoaded', function() {
             prevImage();
         }
     }
+
+    // Enhanced dropdown animation for current navbar
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+        
+        // Add icons to dropdown items
+        const icons = [
+            'fas fa-ring',
+            'fas fa-heart',
+            'fas fa-glass-cheers',
+            'fas fa-user-friends',
+            'fas fa-male',
+            'fas fa-ad',
+            'fas fa-star',
+            'fas fa-calendar-alt'
+        ];
+        
+        dropdownItems.forEach((item, index) => {
+            if (index < icons.length) {
+                // Remove any existing icons first
+                const existingIcon = item.querySelector('i');
+                if (existingIcon) {
+                    existingIcon.remove();
+                }
+                
+                const icon = document.createElement('i');
+                icon.className = icons[index];
+                item.insertBefore(icon, item.firstChild);
+            }
+        });
+        
+        // Enhanced dropdown animation with GSAP
+        const dropdown = document.querySelector('.dropdown');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        
+        // Only apply GSAP animation on desktop
+        if (window.innerWidth > 768) {
+            dropdown.addEventListener('mouseenter', function() {
+                gsap.to(dropdownMenu, {
+                    opacity: 1,
+                    visibility: 'visible',
+                    y: 0,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+                
+                gsap.to('.dropdown-item', {
+                    x: 0,
+                    opacity: 1,
+                    stagger: 0.05,
+                    duration: 0.4,
+                    ease: 'power2.out'
+                });
+            });
+            
+            dropdown.addEventListener('mouseleave', function() {
+                gsap.to(dropdownMenu, {
+                    opacity: 0,
+                    visibility: 'hidden',
+                    y: 10,
+                    duration: 0.2,
+                    ease: 'power2.in'
+                });
+                
+                gsap.to('.dropdown-item', {
+                    x: -20,
+                    opacity: 0,
+                    duration: 0.2,
+                    ease: 'power2.in'
+                });
+            });
+        }
+        
+        // Mobile dropdown toggle
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        dropdownToggle.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const dropdown = this.closest('.dropdown');
+                dropdown.classList.toggle('active');
+            }
+        });
+    });
 });
