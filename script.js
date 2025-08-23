@@ -104,31 +104,17 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
-    // Navigation scroll behavior
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = this.getAttribute('href');
-            if (target === '#home') {
-                gsap.to(window, {duration: 1, scrollTo: 0, ease: 'power2.inOut'});
-            } else if (target !== 'portfolio.html') {
-                gsap.to(window, {duration: 1, scrollTo: target, ease: 'power2.inOut'});
-            } else {
-                window.location.href = target;
-            }
-        });
-    });
+    // // Navigation scroll behavior
     
-    // Nav scroll effect
-    const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-    });
+    // // Nav scroll effect
+    // const nav = document.getElementById('mainNav');
+    // window.addEventListener('scroll', function() {
+    //     if (window.scrollY > 50) {
+    //         nav.classList.add('scrolled');
+    //     } else {
+    //         nav.classList.remove('scrolled');
+    //     }
+    // });
     
     // Mobile menu toggle
     const hamburger = document.querySelector('.hamburger');
@@ -559,5 +545,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 dropdown.classList.toggle('active');
             }
         });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.benefit-card, .package-card');
+            
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                
+                if(position.top < window.innerHeight - 100) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        const benefits = document.querySelectorAll('.benefit-card, .package-card');
+        benefits.forEach(item => {
+            item.style.opacity = 0;
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'all 0.5s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll();
     });
 });
