@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grandeur - Professional Makeup</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="portfolio.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -14,7 +14,7 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" class="logo">
-                    <img src="logo/logo.png" alt="Grandeur">
+                    <img src="logo/images-removebg-preview.png" alt="Grandeur">
                 </a>
             </div>
             
@@ -25,8 +25,8 @@
             </button>
             
             <div class="nav-links">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
                 <div class="dropdown">
                     <a href="#services" class="nav-link dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
@@ -40,8 +40,8 @@
                         <a href="#" class="dropdown-item">Life Events Makeup</a>
                     </div>
                 </div>
-                <a href="portfolio.html" class="nav-link">Portfolio</a>
-                <a href="#academy" class="nav-link">Academy</a>
+                <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                <a href="academy.html" class="nav-link">Academy</a>
                 <a href="#testimonials" class="nav-link">Testimonials</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
@@ -50,131 +50,170 @@
     <div class="main">
 
         <section class="portfolio-section">
-            <div class="portfolio-header">
-                <h2>Our Photo Gallery</h2>
+            <div class="portfolio-container">
+                <div class="portfolio-header">
+                    <h2>Our Portfolio</h2>
+                    <p>Explore our diverse range of bridal makeup styles</p>
+                </div>
+                
                 <div class="portfolio-filters">
                     <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="hindu">Hindu Wedding</button>
                     <button class="filter-btn" data-filter="christian">Christian Wedding</button>
                     <button class="filter-btn" data-filter="muslim">Muslim Wedding</button>
                 </div>
-            </div>
-            
-            <div class="portfolio-grid">
-                <!-- Hindu Wedding Images -->
-                <div class="portfolio-item hindu" data-category="hindu">
-                    <img src="images/gallery1/3a.png" alt="Hindu Wedding 1">
-                    <div class="portfolio-overlay">
-                        <h3>Hindu Wedding</h3>
+                
+                <div class="portfolio-grid">
+                    <!-- Hindu Wedding Images -->
+                    <div class="portfolio-item" data-category="hindu">
+                        <img src="images/Hindu/1.jpg" alt="Hindu Bridal Makeup">
+                        <div class="portfolio-overlay">
+                            <h3>Traditional Hindu Bride</h3>
+                            <p>Classic red and gold theme</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="hindu">
+                        <img src="images/chri/1.jpg" alt="Hindu Bridal Makeup">
+                        <div class="portfolio-overlay">
+                            <h3>Modern Hindu Bride</h3>
+                            <p>Contemporary look with traditional elements</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Christian Wedding Images -->
+                    <div class="portfolio-item" data-category="christian">
+                        <img src="images/muslim wedding/1.jpg" alt="Christian Bridal Makeup">
+                        <div class="portfolio-overlay">
+                            <h3>Elegant Christian Bride</h3>
+                            <p>Soft and romantic makeup</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="christian">
+                        <img src="images/muslim wedding/1.jpg" alt="Christian Bridal Makeup">
+                        <div class="portfolio-overlay">
+                            <h3>Church Wedding</h3>
+                            <p>Natural glow for the ceremony</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Muslim Wedding Images -->
+                    <div class="portfolio-item" data-category="muslim">
+                        <img src="images/muslim wedding/1.jpg" alt="Muslim Bridal Makeup">
+                        <div class="portfolio-overlay">
+                            <h3>Traditional Muslim Bride</h3>
+                            <p>Elegant and sophisticated look</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="muslim">
+                        <img src="images/muslim wedding/1.jpg" alt="Muslim Bridal Makeup">
+                        <div class="portfolio-overlay">
+                            <h3>Nikah Ceremony</h3>
+                            <p>Traditional makeup for the special day</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Tamil Brahmin Images -->
+                    <div class="portfolio-item" data-category="tamil-brahmin">
+                        <img src="images/muslim wedding/1.jpg" alt="Tamil Brahmin Bridal Makeup">
+                        <div class="portfolio-overlay">
+                            <h3>Traditional Tamil Bride</h3>
+                            <p>Authentic South Indian style</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="tamil-brahmin">
+                        <img src="images/muslim wedding/1.jpg" alt="Tamil Brahmin Bridal Makeup">
+                        <div class="portfolio-overlay">
+                            <h3>Modern Tamil Bride</h3>
+                            <p>Contemporary take on traditional style</p>
+                        </div>
+                    </div>
+                    
+                    <!-- North Indian Images -->
+                    <div class="portfolio-item" data-category="north-indian">
+                        <img src="images/muslim wedding/1.jpg" alt="North Indian Bridal Makeup">
+                        <div class="portfolio-overlay">
+                            <h3>Punjabi Bride</h3>
+                            <p>Vibrant and colorful look</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="north-indian">
+                        <img src="images/muslim wedding/1.jpg" alt="North Indian Bridal Makeup">
+                        <div class="portfolio-overlay">
+                            <h3>Rajasthani Bride</h3>
+                            <p>Traditional jewelry and makeup</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Add more images for each category as needed -->
+                    <div class="portfolio-item" data-category="hindu">
+                        <img src="images/muslim wedding/1.jpg" alt="Hindu Bridal Makeup">
+                        <div class="portfolio-overlay">
+                            <h3>Hindu Ceremony</h3>
+                            <p>Traditional rituals makeup</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="christian">
+                        <img src="images/muslim wedding/1.jpg" alt="Christian Bridal Makeup">
+                        <div class="portfolio-overlay">
+                            <h3>Christian Reception</h3>
+                            <p>Evening glam look</p>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item hindu" data-category="hindu">
-                    <img src="images/gallery1/3b.png" alt="Hindu Wedding 2">
-                    <div class="portfolio-overlay">
-                        <h3>Hindu Wedding</h3>
-                    </div>
-                </div>
-
-                <!-- Christian Wedding Images -->
-                <div class="portfolio-item christian" data-category="christian">
-                    <img src="images/gallery1/3c.png" alt="Christian Wedding 1">
-                    <div class="portfolio-overlay">
-                        <h3>Christian Wedding</h3>
-                    </div>
-                </div>
-                <div class="portfolio-item christian" data-category="christian">
-                    <img src="images/gallery1/3d.png" alt="Christian Wedding 2">
-                    <div class="portfolio-overlay">
-                        <h3>Christian Wedding</h3>
-                    </div>
-                </div>
-                <div class="portfolio-item christian" data-category="christian">
-                    <img src="images/gallery2/2a.png" alt="Christian Wedding 2">
-                    <div class="portfolio-overlay">
-                        <h3>Christian Wedding</h3>
-                    </div>
-                </div>
-                <div class="portfolio-item christian" data-category="christian">
-                    <img src="images/gallery2/2b.png" alt="Christian Wedding 2">
-                    <div class="portfolio-overlay">
-                        <h3>Christian Wedding</h3>
-                    </div>
-                </div>
-                <!-- Add 8 more christian images -->
-
-                <!-- Muslim Wedding Images -->
-                <div class="portfolio-item muslim" data-category="muslim">
-                    <img src="images/muslim wedding/1.jpg" alt="Muslim Wedding 1">
-                    <div class="portfolio-overlay">
-                        <h3>Muslim Wedding</h3>
-                    </div>
-                </div>
-                <div class="portfolio-item muslim" data-category="muslim">
-                    <img src="images/muslim wedding/2.jpg" alt="Muslim Wedding 2">
-                    <div class="portfolio-overlay">
-                        <h3>Muslim Wedding</h3>
-                    </div>
-                </div>
-                <!-- Add 8 more muslim images -->
             </div>
         </section>
 
-
-    <footer class="footer">
+        <!-- Footer -->
+        <footer class="footer" id="contact">
             <div class="footer-container">
-                <!-- About Column -->
-                <div class="footer-col" id="footer-about">
+                <div class="footer-col">
                     <h3>About Us</h3>
-                    <p>Grandeur's inception as a brand dates back to 2015 when our Founder & Chief MUA Dr Sinuthi Vijayan began working as a freelance makeup artist purely out of a passion towards fashion, styling and makeup.</p>
-                    
-                    <div class="footer-contact">
-                        <p>House No. 10 1, A Street Jawahar Nagar, Kowdiar</p>
-                        <p>Thiruvananthapuram, Kerala 695003 India</p>
-                        <p>0471 460 0016</p>
-                        <p>+91 999 521 2955</p>
-                    </div>
+                    <p>Grandeur Artistry is the culmination of years of love for the art of grooming. What started as an interest in fashion, grooming and makeup, eventually evolved into a vision, to ensure the best services in these fields.</p>
                 </div>
-                
-                <!-- Services Column -->
-                <div class="footer-col" id="footer-services">
+                <div class="footer-col">
                     <h3>Our Services</h3>
                     <ul class="footer-services">
-                        <li>Wedding Makeup</li>
+                        <li>Bridal Makeup</li>
                         <li>Engagement Makeup</li>
-                        <li>Celebrity Makeup</li>
+                        <li>Life Event Makeup</li>
                         <li>Advertising Makeup</li>
-                        <li>Life Events Makeup</li>
+                        <li>Makeup Academy</li>
                     </ul>
                 </div>
-                
-                <!-- Subscribe Column -->
-                <div class="footer-col" id="footer-subscribe">
-                    <h3>Subscribe Now</h3>
-                    <p>Stay updated with our latest offers and news</p>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="footer-contact">
+                        <p>+91 1234567890</p>
+                        <p>info@grandeur.com</p>
+                        <p>123 Beauty Street, Makeup City</p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Subscribe</h3>
+                    <p>Subscribe to our newsletter for the latest updates and offers.</p>
                     <form class="subscribe-form">
-                        <input type="email" placeholder="Your email here" class="subscribe-input" required>
-                        <button type="submit" class="subscribe-btn">Subscribe Now →</button>
+                        <input type="email" class="subscribe-input" placeholder="Your Email">
+                        <button type="submit" class="subscribe-btn">Subscribe</button>
                     </form>
                 </div>
             </div>
-            
-            <!-- <div class="footer-bottom">
-                <p>Copyright©2023 Grandeur. All rights reserved. Developed by Teknika Solutions</p>
-            </div> -->
+            <div class="footer-bottom">
+                <p>&copy; 2023 Grandeur Artistry. All Rights Reserved.</p>
+            </div>
         </footer>
     </div>
-    
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" integrity="sha512-wOeEC+9qERAzhliwBFPDb6t8TiFFxdxG8vhK/Ygs7TuC44bpg8pg/X2/U/u+0X4fK05wb9id1EIipnF02+CFQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.45/dist/lenis.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
     
 </body>
 </html>
-
-
-    
