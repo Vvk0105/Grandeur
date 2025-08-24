@@ -23,27 +23,29 @@
             </button>
             
             <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link active">About</a>
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
                 <div class="dropdown">
-                    <a href="" class="nav-link dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
-                        <a href="wedding-makeup.html" class="dropdown-item">Wedding Makeup</a>
-                        <a href="engagement-makeup.html" class="dropdown-item">Engagement Makeup</a>
-                        <a href="wedding-reception-makeup.html" class="dropdown-item">Wedding Reception Makeup</a>
-                        <a href="wedding-guest.html" class="dropdown-item">Wedding Guest Makeup</a>
-                        <a href="groom-styling.html" class="dropdown-item">Groom Styling Makeup</a>
-                        <a href="advertising-makup.html" class="dropdown-item">Advertising Makeup</a>
-                        <a href="celebrity-makeup.html" class="dropdown-item">Celebrity Makeup</a>
-                        <a href="life-events.html" class="dropdown-item">Life Events Makeup</a>
+                        <a href="wedding-makeup.html" class="dropdown-item"><i class="fas fa-ring"></i> Wedding Makeup</a>
+                        <a href="engagement-makeup.html" class="dropdown-item"><i class="fas fa-gem"></i> Engagement Makeup</a>
+                        <a href="wedding-reception-makeup.html" class="dropdown-item"><i class="fas fa-glass-cheers"></i> Wedding Reception Makeup</a>
+                        <a href="wedding-guest.html" class="dropdown-item"><i class="fas fa-user-friends"></i> Wedding Guest Makeup</a>
+                        <a href="groom-styling.html" class="dropdown-item"><i class="fas fa-vest"></i> Groom Styling Makeup</a>
+                        <a href="advertising-makup.html" class="dropdown-item"><i class="fas fa-ad"></i> Advertising Makeup</a>
+                        <a href="celebrity-makeup.html" class="dropdown-item"><i class="fas fa-star"></i> Celebrity Makeup</a>
+                        <a href="life-events.html" class="dropdown-item"><i class="fas fa-calendar-day"></i> Life Events Makeup</a>
                     </div>
                 </div>
                 <a href="portfolio.html" class="nav-link">Portfolio</a>
-                <a href="#academy" class="nav-link">Academy</a>
-                
+                <a href="academy.html" class="nav-link">Academy</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
         </div>
+        
+        <!-- Overlay for mobile -->
+        <div class="nav-overlay"></div>
     </nav>
     <section class="about-container">
         <div class="about-header">
@@ -216,26 +218,68 @@
         gsap.ticker.lagSmoothing(0);
 
         document.addEventListener('DOMContentLoaded', function() {
-            const nav = document.getElementById('mainNav');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.nav-links');
+            const overlay = document.querySelector('.nav-overlay');
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdown = document.querySelector('.dropdown');
+            
+            // Toggle mobile menu
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = this.classList.contains('active') ? 'hidden' : '';
+            });
+            
+            // Toggle dropdown on mobile
+            if (dropdownToggle) {
+                dropdownToggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 968) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            }
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (mobileMenu.classList.contains('active') && 
+                    !e.target.closest('.nav-links') && 
+                    !e.target.closest('.hamburger')) {
+                    closeMenu();
+                }
+            });
+            
+            // Close menu when clicking on overlay
+            overlay.addEventListener('click', closeMenu);
+            
+            // Close menu when clicking on a nav link (except dropdown toggle)
+            document.querySelectorAll('.nav-link:not(.dropdown-toggle)').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 968) {
+                        closeMenu();
+                    }
+                });
+            });
+            
+            function closeMenu() {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                dropdown.classList.remove('active');
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 968) {
+                    closeMenu();
                 }
             });
 
-            const hamburger = document.querySelector('.hamburger');
-            const mobileMenu = document.querySelector('.nav-links');
-            
-            hamburger.addEventListener('click', function() {
-                this.classList.toggle('active');
-                mobileMenu.classList.toggle('active');
-            });
-
-            // --- other animations and swiper setup remain unchanged ---
-
-            // FONT-LOADED ANIMATIONS
             if (document.fonts) {
                 document.fonts.ready.then(() => {
                     runSplitTextAnimations();
@@ -345,8 +389,19 @@
                     });
                 });
             }
+            gsap.to('.footer-col', {
+                scrollTrigger: {
+                    trigger: '.footer',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: 'power2.out'
+            });
         });
-
     </script>
 </body>
 </html>
