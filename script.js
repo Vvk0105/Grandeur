@@ -144,16 +144,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // // Nav scroll effect
     const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-    });
-    
-    // Mobile menu toggle
-    const hamburger = document.querySelector('.hamburger');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+            const hamburger = document.querySelector('.hamburger');
             const mobileMenu = document.querySelector('.nav-links');
             const overlay = document.querySelector('.nav-overlay');
             const dropdownToggle = document.querySelector('.dropdown-toggle');
@@ -207,6 +205,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.style.overflow = '';
                 dropdown.classList.remove('active');
             }
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 968) {
+                    closeMenu();
+                }
+            });
     
     // Hero animations
     const heroTl = gsap.timeline();
