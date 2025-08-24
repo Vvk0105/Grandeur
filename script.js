@@ -37,67 +37,83 @@ document.addEventListener('DOMContentLoaded', function() {
     const loaderQuote = document.querySelector('.loader-quote');
     const makeupBrushes = document.querySelectorAll('.makeup-brush');
     
-    document.body.style.overflow = 'hidden';
+    // Check if the page was refreshed
+    const navigationEntries = performance.getEntriesByType("navigation");
+    const wasRefreshed = navigationEntries.length > 0 && navigationEntries[0].type === "reload";
+    
+    // Check if we're coming from another page on the same site
+    const isSameSiteNavigation = document.referrer.includes(window.location.hostname);
+    
+    if (wasRefreshed || !isSameSiteNavigation) {
+        // Show loader for refreshes or external referrals
+        document.body.style.overflow = 'hidden';
 
-    // Simulate loading progress
-    let progress = 0;
-    const loadingInterval = setInterval(() => {
-        progress += Math.random() * 10;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(loadingInterval);
-            
-            // Complete loading and reveal main content
-            setTimeout(() => {
-                introLoader.classList.add('hidden');
-                mainContent.classList.add('visible');
-                document.body.style.overflow = 'auto';
-            }, 800);
-        }
-        progressBar.style.width = progress + '%';
-    }, 200);
-    
-    // Animate loader elements with delays
-    setTimeout(() => {
-        loaderLogo.style.opacity = 1;
-        loaderLogo.style.transform = 'translateY(0)';
-        loaderLogo.style.transition = 'opacity 1s ease, transform 1s ease';
-    }, 300);
-    
-    setTimeout(() => {
-        loaderText.style.opacity = 1;
-        loaderText.style.transform = 'translateY(0)';
-        loaderText.style.transition = 'opacity 1s ease, transform 1s ease';
-    }, 800);
-    
-    // Animate makeup brushes
-    makeupBrushes.forEach((brush, index) => {
-        setTimeout(() => {
-            brush.style.opacity = 1;
-            brush.style.transition = 'opacity 0.8s ease';
-            
-            // Animate brush movement
-            const angle = index % 2 === 0 ? 10 : -10;
-            brush.style.transform = `rotate(${angle}deg)`;
-            brush.style.transition = 'transform 1.2s ease, opacity 0.8s ease';
-            
-            // Create continuous subtle animation
-            setInterval(() => {
-                const currentAngle = index % 2 === 0 ? 10 : -10;
-                const newAngle = index % 2 === 0 ? -10 : 10;
-                brush.style.transform = `rotate(${newAngle}deg)`;
+        // Simulate loading progress
+        let progress = 0;
+        const loadingInterval = setInterval(() => {
+            progress += Math.random() * 10;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loadingInterval);
                 
+                // Complete loading and reveal main content
                 setTimeout(() => {
-                    brush.style.transform = `rotate(${currentAngle}deg)`;
-                }, 1200);
-            }, 2400);
-        }, 1200 + (index * 400));
-    });
-    
-    setTimeout(() => {
-        loaderQuote.style.opacity = 1;
-        loaderQuote.style.transition = 'opacity 1.2s ease';
-    }, 1600);
+                    introLoader.classList.add('hidden');
+                    mainContent.classList.add('visible');
+                    document.body.style.overflow = 'auto';
+                }, 800);
+            }
+            progressBar.style.width = progress + '%';
+        }, 200);
+        
+        // Animate loader elements with delays
+        setTimeout(() => {
+            loaderLogo.style.opacity = 1;
+            loaderLogo.style.transform = 'translateY(0)';
+            loaderLogo.style.transition = 'opacity 1s ease, transform 1s ease';
+        }, 300);
+        
+        setTimeout(() => {
+            loaderText.style.opacity = 1;
+            loaderText.style.transform = 'translateY(0)';
+            loaderText.style.transition = 'opacity 1s ease, transform 1s ease';
+        }, 800);
+        
+        // Animate makeup brushes
+        makeupBrushes.forEach((brush, index) => {
+            setTimeout(() => {
+                brush.style.opacity = 1;
+                brush.style.transition = 'opacity 0.8s ease';
+                
+                // Animate brush movement
+                const angle = index % 2 === 0 ? 10 : -10;
+                brush.style.transform = `rotate(${angle}deg)`;
+                brush.style.transition = 'transform 1.2s ease, opacity 0.8s ease';
+                
+                // Create continuous subtle animation
+                setInterval(() => {
+                    const currentAngle = index % 2 === 0 ? 10 : -10;
+                    const newAngle = index % 2 === 0 ? -10 : 10;
+                    brush.style.transform = `rotate(${newAngle}deg)`;
+                    
+                    setTimeout(() => {
+                        brush.style.transform = `rotate(${currentAngle}deg)`;
+                    }, 1200);
+                }, 2400);
+            }, 1200 + (index * 400));
+        });
+        
+        setTimeout(() => {
+            loaderQuote.style.opacity = 1;
+            loaderQuote.style.transition = 'opacity 1.2s ease';
+        }, 1600);
+    } else {
+        // Hide loader immediately for same-site navigation
+        introLoader.style.display = 'none';
+        mainContent.style.opacity = 1;
+        mainContent.classList.add('visible');
+        document.body.style.overflow = 'auto';
+    }
 });
 // Initialize GSAP
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -128,10 +144,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Hero animations
     const heroTl = gsap.timeline();
     heroTl
-        .to('.hero-subtitle', {duration: 1, opacity: 1, y: 0, ease: 'power2.out', delay: 5})
-        .to('.hero-title', {duration: 1.2, opacity: 1, y: 0, ease: 'power2.out'}, '-=0.5')
-        .to('.hero-text', {duration: 1, opacity: 1, y: 0, ease: 'power2.out'}, '-=0.5')
-        .to('.hero-btn', {duration: 1, opacity: 1, y: 0, ease: 'power2.out'}, '-=0.5');
+        .to('.hero-subtitle', {duration: 0.5, opacity: 1, y: 0, ease: 'power2.out'})
+        .to('.hero-title', {duration: 0.5, opacity: 1, y: 0, ease: 'power2.out'},)
+        .to('.hero-text', {duration: 0.5, opacity: 1, y: 0, ease: 'power2.out'},)
+        .to('.hero-btn', {duration: 0.5, opacity: 1, y: 0, ease: 'power2.out'},);
     
     // Floating elements animation
     gsap.to('.floating-element', {
