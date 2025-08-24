@@ -188,6 +188,165 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" integrity="sha512-wOeEC+9qERAzhliwBFPDb6t8TiFFxdxG8vhK/Ygs7TuC44bpg8pg/X2/U/u+0X4fK05wb9id1EIipnF02+CFQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        lenis.on('scroll', ScrollTrigger.update);
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const nav = document.getElementById('mainNav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+
+            // --- other animations and swiper setup remain unchanged ---
+
+            // FONT-LOADED ANIMATIONS
+            if (document.fonts) {
+                document.fonts.ready.then(() => {
+                    runSplitTextAnimations();
+                });
+            } else {
+                runSplitTextAnimations();
+            }
+
+            function runSplitTextAnimations() {
+                const aboutText = document.querySelectorAll('.about-animation');
+                if (aboutText.length) {
+                    const split = new SplitText(aboutText, {
+                        type: "lines,words",
+                        linesClass: "line",
+                        wordsClass: "word",
+                        mask: "lines"
+                    });
+                    gsap.set(split.lines, { visibility: 'visible' });
+                    gsap.from(split.lines, {
+                        yPercent: 100,
+                        opacity: 0,
+                        duration: 1.5,
+                        stagger: 0.08,
+                        ease: "expo.out",
+                        scrollTrigger: {
+                            trigger: ".about-content",
+                            start: "top 45%",
+                            end: "bottom 20%",
+                            toggleActions: "play none none none",
+                            once: true,
+                        }
+                    });
+                }
+
+                const mandv = document.querySelectorAll('.mission-about-animation');
+                if (mandv.length) {
+                    const split = new SplitText(mandv, {
+                        type: "lines,words",
+                        linesClass: "line",
+                        wordsClass: "word",
+                        mask: "lines"
+                    });
+                    gsap.set(split.lines, { visibility: 'visible' });
+                    gsap.from(split.lines, {
+                        yPercent: 100,
+                        opacity: 0,
+                        duration: 1.5,
+                        stagger: 0.08,
+                        ease: "expo.out",
+                        scrollTrigger: {
+                            trigger: ".mission-vision",
+                            start: "top 80%",
+                            end: "bottom 20%",
+                            toggleActions: "play none none none",
+                            once: true,
+                        }
+                    });
+                }
+
+                const academy = document.querySelectorAll('.academy-animation');
+                if (academy.length) {
+                    const split = new SplitText(academy, {
+                        type: "lines,words",
+                        linesClass: "line",
+                        wordsClass: "word",
+                        mask: "lines"
+                    });
+                    gsap.set(split.lines, { visibility: 'visible' });
+                    gsap.from(split.lines, {
+                        yPercent: 100,
+                        opacity: 0,
+                        duration: 1.5,
+                        stagger: 0.08,
+                        ease: "expo.out",
+                        scrollTrigger: {
+                            trigger: ".academy-section",
+                            start: "top 75%",
+                            end: "bottom 20%",
+                            toggleActions: "play none none none",
+                            once: true,
+                        }
+                    });
+                }
+
+                const benefits = document.querySelectorAll('.benefit-animation');
+                benefits.forEach(el => {
+                    const split = new SplitText(el, {
+                        type: "lines,words",
+                        linesClass: "line",
+                        wordsClass: "word",
+                        mask: "lines"
+                    });
+                    gsap.set(split.lines, { visibility: 'visible' });
+                    gsap.from(split.lines, {
+                        yPercent: 100,
+                        opacity: 0,
+                        duration: 1.5,
+                        stagger: 0.08,
+                        ease: "expo.out",
+                        scrollTrigger: {
+                            trigger: ".benefits-grid",
+                            start: "top 75%",
+                            end: "bottom 20%",
+                            toggleActions: "play none none none",
+                            once: true,
+                        }
+                    });
+                });
+            }
+        });
+
+    </script>
 </body>
 </html>
