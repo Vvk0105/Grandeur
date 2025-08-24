@@ -513,7 +513,156 @@ nav.scrolled .nav-logo img {
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
+    overflow: hidden;
 }
+
+.about-brush {
+    position: absolute;
+    width: 40px;
+    height: 120px;
+    opacity: 0;
+    z-index: 2;
+}
+
+.brush-left {
+    bottom: -50px;
+    left: 5%;
+    transform: rotate(-15deg);
+}
+
+.brush-right {
+    bottom: -50px;
+    right: 5%;
+    transform: rotate(15deg);
+}
+
+.brush-handle {
+    position: absolute;
+    width: 20px;
+    height: 80px;
+    background: linear-gradient(to bottom, #9f6734, #7a4f28);
+    border-radius: 10px 10px 0 0;
+    left: 10px;
+    top: 0;
+}
+
+.brush-bristles {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #e8d2b8;
+    border-radius: 20px;
+    top: 80px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Animation classes */
+.brush-left.revealed {
+    animation: brushRevealLeft 1.5s ease-out forwards;
+}
+
+.brush-right.revealed {
+    animation: brushRevealRight 1.5s ease-out forwards;
+}
+
+@keyframes brushRevealLeft {
+    0% {
+        opacity: 0;
+        bottom: -50px;
+        transform: rotate(-15deg) scale(0.8);
+    }
+    50% {
+        opacity: 0.8;
+        transform: rotate(-5deg) scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        bottom: 50px;
+        transform: rotate(-15deg) scale(1);
+    }
+}
+
+@keyframes brushRevealRight {
+    0% {
+        opacity: 0;
+        bottom: -50px;
+        transform: rotate(15deg) scale(0.8);
+    }
+    50% {
+        opacity: 0.8;
+        transform: rotate(5deg) scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        bottom: 50px;
+        transform: rotate(15deg) scale(1);
+    }
+}
+
+/* Continuous subtle animation after reveal */
+@keyframes brushFloat {
+    0%, 100% {
+        transform: rotate(-15deg) translateY(0);
+    }
+    50% {
+        transform: rotate(-15deg) translateY(-5px);
+    }
+}
+
+.brush-left.revealed {
+    animation: brushRevealLeft 1.5s ease-out forwards, brushFloat 3s ease-in-out infinite 1.5s;
+}
+
+.brush-right.revealed {
+    animation: brushRevealRight 1.5s ease-out forwards, brushFloat 3s ease-in-out infinite 1.5s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .about-brush {
+        width: 30px;
+        height: 90px;
+    }
+    
+    .brush-handle {
+        width: 15px;
+        height: 60px;
+        left: 7.5px;
+    }
+    
+    .brush-bristles {
+        width: 30px;
+        height: 30px;
+        top: 60px;
+    }
+    
+    .brush-left {
+        left: 3%;
+    }
+    
+    .brush-right {
+        right: 3%;
+    }
+    
+    @keyframes brushRevealLeft {
+        100% {
+            bottom: 30px;
+        }
+    }
+    
+    @keyframes brushRevealRight {
+        100% {
+            bottom: 30px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .about-brush {
+        display: none; /* Hide brushes on mobile for better space usage */
+    }
+}
+
 
 .about-content {
     position: relative;

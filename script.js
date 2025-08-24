@@ -1,7 +1,5 @@
-// Initialize GSAP
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-// Initialize Lenis smooth scrolling
 const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -13,22 +11,54 @@ const lenis = new Lenis({
     infinite: false,
 });
 
-// Add scroll event listener for GSAP ScrollTrigger
 lenis.on('scroll', ScrollTrigger.update);
 
-// Add to requestAnimationFrame
 function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
 }
 requestAnimationFrame(raf);
 
-// Update GSAP ScrollTrigger
 gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
 });
 gsap.ticker.lagSmoothing(0);
 document.addEventListener('DOMContentLoaded', function() {
+    const brushLeft = document.querySelector('.brush-left');
+    const brushRight = document.querySelector('.brush-right');
+    
+    const brushTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.about-container',
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+            once: true
+        }
+    });
+    
+    brushTimeline.to(brushLeft, {
+        opacity: 1,
+        bottom: 50,
+        duration: 1.5,
+        ease: 'power2.out',
+        rotation: -15
+    }, 0);
+    
+    brushTimeline.to(brushRight, {
+        opacity: 1,
+        bottom: 50,
+        duration: 1.5,
+        ease: 'power2.out',
+        rotation: 15
+    }, 0);
+    
+    brushTimeline.to([brushLeft, brushRight], {
+        y: -5,
+        duration: 1.2,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut'
+    }, 1.5);
     const introLoader = document.getElementById('introLoader');
     const progressBar = document.getElementById('progressBar');
     const mainContent = document.getElementById('mainContent');
@@ -37,18 +67,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const loaderQuote = document.querySelector('.loader-quote');
     const makeupBrushes = document.querySelectorAll('.makeup-brush');
     
-    // Check if the page was refreshed
     const navigationEntries = performance.getEntriesByType("navigation");
     const wasRefreshed = navigationEntries.length > 0 && navigationEntries[0].type === "reload";
     
-    // Check if we're coming from another page on the same site
     const isSameSiteNavigation = document.referrer.includes(window.location.hostname);
     
     if (wasRefreshed || !isSameSiteNavigation) {
-        // Show loader for refreshes or external referrals
         document.body.style.overflow = 'hidden';
 
-        // Simulate loading progress
         let progress = 0;
         const loadingInterval = setInterval(() => {
             progress += Math.random() * 10;
@@ -56,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 progress = 100;
                 clearInterval(loadingInterval);
                 
-                // Complete loading and reveal main content
                 setTimeout(() => {
                     introLoader.classList.add('hidden');
                     mainContent.classList.add('visible');
@@ -66,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
             progressBar.style.width = progress + '%';
         }, 200);
         
-        // Animate loader elements with delays
         setTimeout(() => {
             loaderLogo.style.opacity = 1;
             loaderLogo.style.transform = 'translateY(0)';
@@ -79,18 +103,15 @@ document.addEventListener('DOMContentLoaded', function() {
             loaderText.style.transition = 'opacity 1s ease, transform 1s ease';
         }, 800);
         
-        // Animate makeup brushes
         makeupBrushes.forEach((brush, index) => {
             setTimeout(() => {
                 brush.style.opacity = 1;
                 brush.style.transition = 'opacity 0.8s ease';
                 
-                // Animate brush movement
                 const angle = index % 2 === 0 ? 10 : -10;
                 brush.style.transform = `rotate(${angle}deg)`;
                 brush.style.transition = 'transform 1.2s ease, opacity 0.8s ease';
                 
-                // Create continuous subtle animation
                 setInterval(() => {
                     const currentAngle = index % 2 === 0 ? 10 : -10;
                     const newAngle = index % 2 === 0 ? -10 : 10;
@@ -108,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
             loaderQuote.style.transition = 'opacity 1.2s ease';
         }, 1600);
     } else {
-        // Hide loader immediately for same-site navigation
         introLoader.style.display = 'none';
         mainContent.style.opacity = 1;
         mainContent.classList.add('visible');
