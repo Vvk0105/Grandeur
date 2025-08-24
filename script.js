@@ -682,4 +682,79 @@ document.addEventListener('DOMContentLoaded', function() {
             item.style.transform = 'translateY(0)';
         }, index * 100);
     });
+
+    const aboutText = document.querySelectorAll('.about-animation');
+    if (aboutText) {
+        const split = new SplitText(aboutText, {
+            type: "lines,words",
+            linesClass: "line",
+            wordsClass: "word",
+            mask: "lines"
+        });
+
+        gsap.from(split.lines, {
+            yPercent: 100,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.08,
+            ease: "expo.out",
+            scrollTrigger: {
+                trigger: ".about-content",
+                start: "top 45%",
+                end: "bottom 20%",
+                toggleActions: "play none none none",
+                once: true,
+            }
+        });
+    }
+
+    const mandv = document.querySelectorAll('.mission-about-animation');
+    if (mandv) {
+        const split = new SplitText(mandv, {
+            type: "lines,words",
+            linesClass: "line",
+            wordsClass: "word",
+            mask: "lines"
+        });
+
+        gsap.from(split.lines, {
+            yPercent: 100,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.08,
+            ease: "expo.out",
+            scrollTrigger: {
+                trigger: ".mission-vision",
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none none",
+                once: true,
+            }
+        });
+    }
+
+    const academy = document.querySelectorAll('.academy-animation');
+    if (academy) {
+        const split = new SplitText(academy, {
+            type: "lines,words",
+            linesClass: "line",
+            wordsClass: "word",
+            mask: "lines"
+        });
+
+        gsap.from(split.lines, {
+            yPercent: 100,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.08,
+            ease: "expo.out",
+            scrollTrigger: {
+                trigger: ".academy-section",
+                start: "top 75%",
+                end: "bottom 20%",
+                toggleActions: "play none none none",
+                once: true,
+            }
+        });
+    }
 });
