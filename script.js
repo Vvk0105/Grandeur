@@ -734,7 +734,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 end: "bottom 20%",
                 toggleActions: "play none none none",
                 once: true,
-                markers: true
             }
         });
     }
