@@ -1,4 +1,29 @@
+/* Prevent FOUC (Flash of Unstyled Content) */
+body:not(.loaded) {
+    opacity: 0;
+    visibility: hidden;
+}
 
+body.loaded {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease;
+}
+
+/* Ensure text remains visible during webfont load */
+.no-fout {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Force layout stability during loading */
+.about-container {
+    contain: layout style;
+}
+
+.about-text p {
+    min-height: 1.2em; /* Prevent collapsing text containers */
+}
 @font-face {
     font-family: 'PP Mori';
     src: url('/fonts/PPMori-Regular.woff2') format('woff2');
