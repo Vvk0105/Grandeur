@@ -692,6 +692,8 @@ document.addEventListener('DOMContentLoaded', function() {
             mask: "lines"
         });
 
+        gsap.set(split.lines, { visibility: 'visible' });
+
         gsap.from(split.lines, {
             yPercent: 100,
             opacity: 0,
@@ -710,32 +712,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const mandv = document.querySelectorAll('.mission-about-animation');
 
-    if (mandv.length) {
-        const tl = gsap.timeline({
+    if (mandv) {
+        const split = new SplitText(mandv, {
+            type: "lines,words",
+            linesClass: "line",
+            wordsClass: "word",
+            mask: "lines"
+        });
+
+        gsap.set(split.lines, { visibility: 'visible' });
+
+        gsap.from(split.lines, {
+            yPercent: 100,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.08,
+            ease: "expo.out",
             scrollTrigger: {
                 trigger: ".mission-vision",
                 start: "top 80%",
                 end: "bottom 20%",
                 toggleActions: "play none none none",
                 once: true,
+                markers: true
             }
-        });
-
-        mandv.forEach(el => {
-            const split = new SplitText(el, {
-                type: "lines,words",
-                linesClass: "line",
-                wordsClass: "word",
-                mask: "lines"
-            });
-
-            tl.from(split.lines, {
-                yPercent: 100,
-                opacity: 0,
-                duration: 1.5,
-                stagger: 0.08,
-                ease: "expo.out"
-            }, 0);
         });
     }
 
@@ -748,6 +748,8 @@ document.addEventListener('DOMContentLoaded', function() {
             wordsClass: "word",
             mask: "lines"
         });
+
+        gsap.set(split.lines, { visibility: 'visible' });
 
         gsap.from(split.lines, {
             yPercent: 100,
@@ -774,7 +776,7 @@ document.addEventListener('DOMContentLoaded', function() {
             wordsClass: "word",
             mask: "lines"
         });
-
+        gsap.set(split.lines, { visibility: 'visible' });
         gsap.from(split.lines, {
             yPercent: 100,
             opacity: 0,

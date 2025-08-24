@@ -298,6 +298,14 @@ nav.scrolled .nav-logo img {
     }
 }
 
+/* Prevent FOUC - Hide elements that will be animated */
+.about-animation,
+.mission-about-animation,
+.academy-animation,
+.benefit-animation {
+    visibility: hidden;
+}
+
 /* about page design  */
 .about-container {
     max-width: 1200px;
