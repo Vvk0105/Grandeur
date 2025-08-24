@@ -23,19 +23,19 @@
             </button>
             
             <div class="nav-links">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="about.html" class="nav-link">About</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About</a>
                 <div class="dropdown">
                     <a href="#" class="nav-link dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
-                        <a href="wedding-makeup.html" class="dropdown-item"><i class="fas fa-ring"></i> Wedding Makeup</a>
-                        <a href="engagement-makeup.html" class="dropdown-item"><i class="fas fa-gem"></i> Engagement Makeup</a>
-                        <a href="wedding-reception-makeup.html" class="dropdown-item"><i class="fas fa-glass-cheers"></i> Wedding Reception Makeup</a>
-                        <a href="wedding-guest.html" class="dropdown-item"><i class="fas fa-user-friends"></i> Wedding Guest Makeup</a>
-                        <a href="groom-styling.html" class="dropdown-item"><i class="fas fa-vest"></i> Groom Styling Makeup</a>
-                        <a href="advertising-makup.html" class="dropdown-item"><i class="fas fa-ad"></i> Advertising Makeup</a>
-                        <a href="celebrity-makeup.html" class="dropdown-item"><i class="fas fa-star"></i> Celebrity Makeup</a>
-                        <a href="life-events.html" class="dropdown-item"><i class="fas fa-calendar-day"></i> Life Events Makeup</a>
+                        <a href="wedding-makeup.html" class="dropdown-item">Wedding Makeup</a>
+                        <a href="engagement-makeup.html" class="dropdown-item">Engagement Makeup</a>
+                        <a href="wedding-reception-makeup.html" class="dropdown-item">Wedding Reception Makeup</a>
+                        <a href="wedding-guest.html" class="dropdown-item">Wedding Guest Makeup</a>
+                        <a href="groom-styling.html" class="dropdown-item">Groom Styling Makeup</a>
+                        <a href="advertising-makup.html" class="dropdown-item">Advertising Makeup</a>
+                        <a href="celebrity-makeup.html" class="dropdown-item">Celebrity Makeup</a>
+                        <a href="life-events.html" class="dropdown-item">Life Events Makeup</a>
                     </div>
                 </div>
                 <a href="portfolio.html" class="nav-link">Portfolio</a>
@@ -218,6 +218,14 @@
         gsap.ticker.lagSmoothing(0);
 
         document.addEventListener('DOMContentLoaded', function() {
+            const nav = document.getElementById('mainNav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
             const hamburger = document.querySelector('.hamburger');
             const mobileMenu = document.querySelector('.nav-links');
             const overlay = document.querySelector('.nav-overlay');

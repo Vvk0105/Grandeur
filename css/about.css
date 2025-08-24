@@ -404,10 +404,10 @@ nav.scrolled .nav-logo img {
         z-index: 999;
     }
     
-    .nav-overlay.active {
+    /* .nav-overlay.active {
         opacity: 1;
         visibility: visible;
-    }
+    } */
 }
 
 @media (max-width: 480px) {

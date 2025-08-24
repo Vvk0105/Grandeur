@@ -154,12 +154,59 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Mobile menu toggle
     const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.querySelector('.nav-links');
-    
-    hamburger.addEventListener('click', function() {
-        this.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-    });
+            const mobileMenu = document.querySelector('.nav-links');
+            const overlay = document.querySelector('.nav-overlay');
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdown = document.querySelector('.dropdown');
+            
+            // Toggle mobile menu
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = this.classList.contains('active') ? 'hidden' : '';
+            });
+            
+            // Toggle dropdown on mobile
+            if (dropdownToggle) {
+                dropdownToggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 968) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            }
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (mobileMenu.classList.contains('active') && 
+                    !e.target.closest('.nav-links') && 
+                    !e.target.closest('.hamburger')) {
+                    closeMenu();
+                }
+            });
+            
+            // Close menu when clicking on overlay
+            overlay.addEventListener('click', closeMenu);
+            
+            // Close menu when clicking on a nav link (except dropdown toggle)
+            document.querySelectorAll('.nav-link:not(.dropdown-toggle)').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 968) {
+                        closeMenu();
+                    }
+                });
+            });
+            
+            function closeMenu() {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                dropdown.classList.remove('active');
+            }
     
     // Hero animations
     const heroTl = gsap.timeline();
