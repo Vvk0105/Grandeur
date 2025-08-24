@@ -1,3 +1,24 @@
+
+// Force fonts to load early and prevent FOUT
+document.addEventListener('DOMContentLoaded', function() {
+    // Preload fonts
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function() {
+            document.body.classList.add('fonts-loaded');
+            document.body.classList.add('loaded');
+        });
+    } else {
+        // Fallback if Font Loading API is not supported
+        setTimeout(function() {
+            document.body.classList.add('loaded');
+        }, 300);
+    }
+    
+    // Fallback in case the above doesn't fire
+    setTimeout(function() {
+        document.body.classList.add('loaded');
+    }, 1000);
+});
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const lenis = new Lenis({
