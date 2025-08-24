@@ -709,20 +709,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const mandv = document.querySelectorAll('.mission-about-animation');
-    if (mandv) {
-        const split = new SplitText(mandv, {
-            type: "lines,words",
-            linesClass: "line",
-            wordsClass: "word",
-            mask: "lines"
-        });
 
-        gsap.from(split.lines, {
-            yPercent: 100,
-            opacity: 0,
-            duration: 1.5,
-            stagger: 0.08,
-            ease: "expo.out",
+    if (mandv.length) {
+        const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".mission-vision",
                 start: "top 80%",
@@ -731,7 +720,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 once: true,
             }
         });
+
+        mandv.forEach(el => {
+            const split = new SplitText(el, {
+                type: "lines,words",
+                linesClass: "line",
+                wordsClass: "word",
+                mask: "lines"
+            });
+
+            tl.from(split.lines, {
+                yPercent: 100,
+                opacity: 0,
+                duration: 1.5,
+                stagger: 0.08,
+                ease: "expo.out"
+            }, 0);
+        });
     }
+
 
     const academy = document.querySelectorAll('.academy-animation');
     if (academy) {
@@ -757,4 +764,31 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    const benefits = document.querySelectorAll('.benefit-animation');
+
+    benefits.forEach(el => {
+        const split = new SplitText(el, {
+            type: "lines,words",
+            linesClass: "line",
+            wordsClass: "word",
+            mask: "lines"
+        });
+
+        gsap.from(split.lines, {
+            yPercent: 100,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.08,
+            ease: "expo.out",
+            scrollTrigger: {
+                trigger: ".benefits-grid", 
+                start: "top 75%",
+                end: "bottom 20%",
+                toggleActions: "play none none none",
+                once: true,
+            }
+        });
+    });
+
 });
