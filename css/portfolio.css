@@ -427,7 +427,7 @@ nav.scrolled .nav-logo img {
 
 .portfolio-container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 1rem auto;
     padding: 0 20px;
 }
 
@@ -440,7 +440,7 @@ nav.scrolled .nav-logo img {
     font-size: 3rem;
     color: #9f6734;
     margin-bottom: 20px;
-    font-weight: 300;
+    font-weight: 600;
 }
 
 .portfolio-header p {
