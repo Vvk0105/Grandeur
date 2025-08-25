@@ -611,49 +611,66 @@ document.addEventListener('DOMContentLoaded', function() {
 // Horizontal auto-scrolling gallery with GSAP animations
 document.addEventListener('DOMContentLoaded', function () {
     const gallery = document.querySelector('.horizontal-gallery');
-    const track = document.querySelector('.gallery-track');
-
-    if (!gallery || !track) return;
-
-    track.innerHTML += track.innerHTML;
-
-    let scrollSpeed = 1.5;
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        scrollSpeed = 1;
-    }
-
-    function autoScroll() {
-        gallery.scrollLeft += scrollSpeed;
-
-        if (gallery.scrollLeft >= track.scrollWidth / 2) {
-            gallery.scrollLeft = 0;
-        }
-
-        requestAnimationFrame(autoScroll);
-    }
-
-    autoScroll();
-
-    const galleryItems = track.querySelectorAll('.gallery-item img');
-    galleryItems.forEach(img => {
-        const originalHeight = img.offsetHeight;
-
-        img.style.height = '0px';
-        img.style.overflow = 'hidden';
-
-        gsap.to(img, {
-            scrollTrigger: {
-                trigger: img,
-                start: "top 90%",
-                toggleActions: "play none none none",
-                once: true
-            },
-            height: originalHeight,
-            duration: 0.8,
-            ease: "power2.out"
+            const track = document.querySelector('.gallery-track');
+            
+            if (gallery && track) {
+                // Only enable auto-scroll on desktop
+                if (window.innerWidth > 768) {
+                    let scrollSpeed = 1.5;
+                    let isScrolling = true;
+                    
+                    function autoScroll() {
+                        if (isScrolling) {
+                            gallery.scrollLeft += scrollSpeed;
+                            
+                            if (gallery.scrollLeft >= track.scrollWidth / 2) {
+                                gallery.scrollLeft = 0;
+                            }
+                        }
+                        requestAnimationFrame(autoScroll);
+                    }
+                    
+                    // Pause auto-scroll on hover
+                    gallery.addEventListener('mouseenter', () => {
+                        isScrolling = false;
+                    });
+                    
+                    gallery.addEventListener('mouseleave', () => {
+                        isScrolling = true;
+                    });
+                    
+                    autoScroll();
+                }
+                
+                // Add scroll snapping for mobile
+                if (window.innerWidth <= 768) {
+                    gallery.style.scrollSnapType = 'x mandatory';
+                    
+                    const items = track.querySelectorAll('.gallery-item');
+                    items.forEach(item => {
+                        item.style.scrollSnapAlign = 'start';
+                    });
+                }
+            }
+            
+            // GSAP animations for gallery items
+            const galleryItems = document.querySelectorAll('.gallery-item img');
+            if (galleryItems.length > 0 && typeof gsap !== 'undefined') {
+                galleryItems.forEach(img => {
+                    gsap.to(img, {
+                        scrollTrigger: {
+                            trigger: img,
+                            start: "top 90%",
+                            toggleActions: "play none none none",
+                            once: true
+                        },
+                        height: "100%",
+                        duration: 0.8,
+                        ease: "power2.out"
+                    });
+                });
+            }
         });
-    });
-});
 
 // Portfolio filtering functionality
 document.addEventListener('DOMContentLoaded', function() {
