@@ -56,7 +56,7 @@
         <div class="about-content">
             <div class="about-text">
                 <p class="about-animation">Grandeur by Dr Shruthi (Previously known as Grandeur Artistry) is a premium bridal makeover studio and academy launched in 2019 by celebrity makeup artist and aesthetic physician Dr Shruthi Vijayan. Located at Jawahar Nagar in Trivandrum, Grandeur offers state-of-the-art, premium makeup and grooming services for all occasions.</p>
-                <p class="about-animation2">Grandeur's inception as a brand dates back to 2015 when our Founder & Chief MUA Dr Shruthi Vijayan began working as a freelance makeup artist purely out of a passion towards fashion, styling and makeup. In three years time, our clientele grew to 50+ happy brides, with Grandeur and Dr Shruthi earning a lot of attention in the beauty industry in Kerala.</p>
+                <p class="about-animation">Grandeur's inception as a brand dates back to 2015 when our Founder & Chief MUA Dr Shruthi Vijayan began working as a freelance makeup artist purely out of a passion towards fashion, styling and makeup. In three years time, our clientele grew to 50+ happy brides, with Grandeur and Dr Shruthi earning a lot of attention in the beauty industry in Kerala.</p>
                 <p class="about-animation">The wholehearted support and motivation from our clients and well-wishers eventually helped us realise our biggest dream of our first brick-and-mortar store in December 2019, with premium wedding makeover and styling services. Having been in the beauty and wellness industry for a long time, we ensure world-class makeover services for our clients with absolute precision, offering you a stress-free experience on your big day.</p>
             </div>
             <div class="about-image">
@@ -300,31 +300,6 @@
                 const aboutText = document.querySelectorAll('.about-animation');
                 if (aboutText.length) {
                     const split = new SplitText(aboutText, {
-                        type: "lines,words",
-                        linesClass: "line",
-                        wordsClass: "word",
-                        mask: "lines"
-                    });
-                    gsap.set(split.lines, { visibility: 'visible' });
-                    gsap.from(split.lines, {
-                        yPercent: 100,
-                        opacity: 0,
-                        duration: 1.5,
-                        stagger: 0.08,
-                        ease: "expo.out",
-                        scrollTrigger: {
-                            trigger: ".about-content",
-                            start: "top 45%",
-                            end: "bottom 20%",
-                            toggleActions: "play none none none",
-                            once: true,
-                        }
-                    });
-                }
-
-                const aboutText2 = document.querySelectorAll('.about-animation2');
-                if (aboutText2.length) {
-                    const split = new SplitText(aboutText2, {
                         type: "lines,words",
                         linesClass: "line",
                         wordsClass: "word",
