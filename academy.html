@@ -52,15 +52,15 @@
         <section class="academy-section">
             <div class="academy-container">
                 <div class="academy-header">
-                    <h2>Makeup Academy</h2>
-                    <p>Nurturing the next generation of professional makeup artists</p>
+                    <h2 class="academy-animation">Makeup Academy</h2>
+                    <p class="academy-animation">Nurturing the next generation of professional makeup artists</p>
                 </div>
                 
                 <div class="academy-content">
                     <div class="academy-text">
-                        <p>In 2021, we formally launched our Makeup Academy as an extension of Grandeur Artistry for wannabe make-up professionals who wish to pursue a career in the beauty industry. We look forward to truly leaving a mark in the beauty and wellness industry by nurturing young talents & like-minded entrepreneurs and transforming them into professional make-up artists.</p>
+                        <p class="academy-animation">In 2021, we formally launched our Makeup Academy as an extension of Grandeur Artistry for wannabe make-up professionals who wish to pursue a career in the beauty industry. We look forward to truly leaving a mark in the beauty and wellness industry by nurturing young talents & like-minded entrepreneurs and transforming them into professional make-up artists.</p>
                         
-                        <p>Our USP is hands-on training from our Founder & Chief MUA Dr Shruthi, who is a cosmetologist and certified celebrity MUA with an experience of over a decade in the beauty industry. We have short and long-term courses with a designed curriculum and paid internship opportunities. Ever since its inception, we have had 20+ professional make-up artists who have successfully completed their training with us.</p>
+                        <p class="academy-animation">Our USP is hands-on training from our Founder & Chief MUA Dr Shruthi, who is a cosmetologist and certified celebrity MUA with an experience of over a decade in the beauty industry. We have short and long-term courses with a designed curriculum and paid internship opportunities. Ever since its inception, we have had 20+ professional make-up artists who have successfully completed their training with us.</p>
                         
                         <div class="academy-features">
                             <div class="feature">
@@ -145,8 +145,51 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" integrity="sha512-wOeEC+9qERAzhliwBFPDb6t8TiFFxdxG8vhK/Ygs7TuC44bpg8pg/X2/U/u+0X4fK05wb9id1EIipnF02+CFQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function runSplitTextAnimations() {
+                const aboutText = document.querySelectorAll('.academy-animation');
+                if (aboutText.length) {
+                    const split = new SplitText(aboutText, {
+                        type: "lines,words",
+                        linesClass: "line",
+                        wordsClass: "word",
+                        mask: "lines"
+                    });
+                    gsap.set(split.lines, { visibility: 'visible' });
+                    gsap.from(split.lines, {
+                        yPercent: 100,
+                        opacity: 0,
+                        duration: 1.5,
+                        stagger: 0.08,
+                        ease: "expo.out",
+                        scrollTrigger: {
+                            trigger: ".about-content",
+                            start: "top 45%",
+                            end: "bottom 20%",
+                            toggleActions: "play none none none",
+                            once: true,
+                        }
+                    });
+                }
+            }
+            gsap.from('.academy-gallery .gallery-item', {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: ".academy-gallery",
+                    start: "top 80%",
+                    once: true
+                }
+            });
+            runSplitTextAnimations();
+        });
+    </script>
 </body>
 </html>
