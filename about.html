@@ -396,6 +396,35 @@
                         }
                     });
                 });
+
+                // Add image animation
+                gsap.to('.about-image img', {
+                    scrollTrigger: {
+                        trigger: ".about-content",
+                        start: "top 65%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none none",
+                        once: true,
+                    },
+                    scale: 1,
+                    duration: 1.8,
+                    ease: "expo.out"
+                });
+                
+                // Optional: Add a subtle fade-in effect for the image container
+                gsap.from('.about-image', {
+                    scrollTrigger: {
+                        trigger: ".about-content",
+                        start: "top 75%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none none",
+                        once: true,
+                    },
+                    opacity: 0,
+                    y: 40,
+                    duration: 1.5,
+                    ease: "power2.out"
+                });
             }
             gsap.to('.footer-col', {
                 scrollTrigger: {

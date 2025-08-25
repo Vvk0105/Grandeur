@@ -473,16 +473,41 @@ nav.scrolled .nav-logo img {
 }
 
 .about-image {
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    position: relative;
     height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .about-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+    transform: scale(1.05);
+    transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.about-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.1) 100%);
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+/* Animation when element comes into view */
+.about-image.animated img {
+    transform: scale(1);
+}
+
+.about-image.animated::after {
+    opacity: 1;
 }
 
 .mission-vision {
