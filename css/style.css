@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'PP Mori';
-    src: url('/fonts/PPMori-Regular.woff2') format('woff2');
+    src: url('/fonts/Poppins-Regular.ttf') format('woff2');
     font-weight: 400;
 }
 @font-face {
     font-family: 'PP Mori Light';
-    src: url('/fonts/PPMori-Extralight.woff2') format('woff2');
+    src: url('/fonts/Poppins-Light.ttf') format('woff2');
     font-weight: 200;
 }
 
