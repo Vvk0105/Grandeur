@@ -454,7 +454,7 @@ nav.scrolled .nav-logo img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
-    align-items: center;
+    align-items: start;
 }
 
 .academy-text p {
@@ -540,10 +540,12 @@ nav.scrolled .nav-logo img {
     .academy-content {
         grid-template-columns: 1fr;
         gap: 40px;
+        display: flex;
+        flex-direction: column;
     }
-    
+
     .academy-gallery {
-        order: -1;
+        order: 1;
     }
 }
 
