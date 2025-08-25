@@ -528,6 +528,12 @@ nav.scrolled .nav-logo img {
     margin-bottom: 60px;
 }
 
+@media (max-width: 768px) {
+    .service-content {
+        flex-direction: column;
+    }
+}
+
 .service-image {
     flex: 1;
     border-radius: 10px;
