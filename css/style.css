@@ -1757,6 +1757,12 @@ textarea.form-input {
     margin-bottom: 0.8rem;
 }
 
+.footer-contact p a {
+    color: #aaa;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
 .footer-contact p:before {
     content: '>';
     position: absolute;
