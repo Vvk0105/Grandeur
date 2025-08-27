@@ -735,6 +735,12 @@ nav.scrolled .nav-logo img {
     margin-bottom: 0.8rem;
 }
 
+.footer-contact p a {
+    color: #aaa;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
 .footer-contact p:before {
     content: '>';
     position: absolute;
@@ -758,6 +764,12 @@ nav.scrolled .nav-logo img {
     position: absolute;
     left: 0;
     color: var(--primary);
+}
+
+.footer-services li a {
+    color: #aaa;
+    text-decoration: none;
+    transition: var(--transition);
 }
 
 .subscribe-form {
