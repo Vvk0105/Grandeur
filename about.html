@@ -232,7 +232,6 @@
             const dropdownToggle = document.querySelector('.dropdown-toggle');
             const dropdown = document.querySelector('.dropdown');
             
-            // Toggle mobile menu
             hamburger.addEventListener('click', function(e) {
                 e.stopPropagation();
                 this.classList.toggle('active');
@@ -241,7 +240,6 @@
                 document.body.style.overflow = this.classList.contains('active') ? 'hidden' : '';
             });
             
-            // Toggle dropdown on mobile
             if (dropdownToggle) {
                 dropdownToggle.addEventListener('click', function(e) {
                     if (window.innerWidth <= 968) {
@@ -252,7 +250,6 @@
                 });
             }
             
-            // Close menu when clicking outside
             document.addEventListener('click', function(e) {
                 if (mobileMenu.classList.contains('active') && 
                     !e.target.closest('.nav-links') && 
@@ -261,10 +258,8 @@
                 }
             });
             
-            // Close menu when clicking on overlay
             overlay.addEventListener('click', closeMenu);
             
-            // Close menu when clicking on a nav link (except dropdown toggle)
             document.querySelectorAll('.nav-link:not(.dropdown-toggle)').forEach(link => {
                 link.addEventListener('click', function() {
                     if (window.innerWidth <= 968) {
@@ -281,7 +276,6 @@
                 dropdown.classList.remove('active');
             }
             
-            // Handle window resize
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 968) {
                     closeMenu();
@@ -297,6 +291,29 @@
             }
 
             function runSplitTextAnimations() {
+            const isMobile = window.innerWidth <= 768;
+    
+                if (isMobile) {
+                    gsap.set('.about-animation, .mission-about-animation, .academy-animation, .benefit-animation', {
+                        opacity: 1,
+                        y: 0
+                    });
+                    
+                    gsap.to('.about-image img', {
+                        scale: 1,
+                        duration: 1.8,
+                        ease: "expo.out"
+                    });
+                    
+                    gsap.to('.about-image', {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                    
+                    return; 
+                }
                 const aboutText = document.querySelectorAll('.about-animation');
                 if (aboutText.length) {
                     const split = new SplitText(aboutText, {
