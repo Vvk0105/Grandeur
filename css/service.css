@@ -420,6 +420,16 @@ nav.scrolled .nav-logo img {
     }
 }
 
+.service-header h1,
+.service-header p,
+.breadcrumbs,
+.service-details h2,
+.service-details p,
+.service-details h3,
+.service-list li {
+    visibility: hidden;
+}
+
 /* Gallery Section */
 .gallery-section {
     padding: 80px 0;

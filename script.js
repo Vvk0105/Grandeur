@@ -846,4 +846,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    const services = document.querySelectorAll('.service-header h1, .service-header p, .breadcrumbs, .service-details h2, .service-details p, .service-details h3, .service-list li');
+
+    services.forEach(el => {
+        const split = new SplitText(el, {
+            type: "lines,words",
+            linesClass: "line",
+            wordsClass: "word",
+            mask: "lines"
+        });
+        gsap.set(split.lines, { visibility: 'visible' });
+        gsap.from(split.lines, {
+            yPercent: 100,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.08,
+            ease: "expo.out",
+            scrollTrigger: {
+                trigger: ".services-container", 
+                start: "top 75%",
+                end: "bottom 20%",
+                toggleActions: "play none none none",
+                once: true,
+            }
+        });
+    });
+
 });
