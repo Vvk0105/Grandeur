@@ -627,7 +627,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
             if (gallery && track) {
                 // Only enable auto-scroll on desktop
-                if (window.innerWidth > 768) {
+                if (window.innerWidth > 0) {
                     let scrollSpeed = 1.5;
                     let isScrolling = true;
                     
@@ -642,10 +642,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         requestAnimationFrame(autoScroll);
                     }
                     
-                    // Pause auto-scroll on hover
-                    gallery.addEventListener('mouseenter', () => {
-                        isScrolling = false;
-                    });
+                    // // Pause auto-scroll on hover
+                    // gallery.addEventListener('mouseenter', () => {
+                    //     isScrolling = false;
+                    // });
                     
                     gallery.addEventListener('mouseleave', () => {
                         isScrolling = true;
@@ -669,6 +669,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const galleryItems = document.querySelectorAll('.gallery-item img');
             if (galleryItems.length > 0 && typeof gsap !== 'undefined') {
                 galleryItems.forEach(img => {
+                    // Set initial width to 0
+                    gsap.set(img, { width: "0%" });
                     gsap.to(img, {
                         scrollTrigger: {
                             trigger: img,
@@ -676,7 +678,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             toggleActions: "play none none none",
                             once: true
                         },
-                        height: "100%",
+                        width: "100%",
                         duration: 0.8,
                         ease: "power2.out"
                     });
