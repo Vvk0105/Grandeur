@@ -623,68 +623,71 @@ document.addEventListener('DOMContentLoaded', function() {
 // Horizontal auto-scrolling gallery with GSAP animations
 document.addEventListener('DOMContentLoaded', function () {
     const gallery = document.querySelector('.horizontal-gallery');
-            const track = document.querySelector('.gallery-track');
-            
-            if (gallery && track) {
-                // Only enable auto-scroll on desktop
-                if (window.innerWidth > 0) {
-                    let scrollSpeed = 1.5;
-                    let isScrolling = true;
-                    
-                    function autoScroll() {
-                        if (isScrolling) {
-                            gallery.scrollLeft += scrollSpeed;
-                            
-                            if (gallery.scrollLeft >= track.scrollWidth / 2) {
-                                gallery.scrollLeft = 0;
-                            }
-                        }
-                        requestAnimationFrame(autoScroll);
-                    }
-                    
-                    // // Pause auto-scroll on hover
-                    // gallery.addEventListener('mouseenter', () => {
-                    //     isScrolling = false;
-                    // });
-                    
-                    gallery.addEventListener('mouseleave', () => {
-                        isScrolling = true;
-                    });
-                    
-                    autoScroll();
-                }
-                
-                // Add scroll snapping for mobile
-                if (window.innerWidth <= 768) {
-                    gallery.style.scrollSnapType = 'x mandatory';
-                    
-                    const items = track.querySelectorAll('.gallery-item');
-                    items.forEach(item => {
-                        item.style.scrollSnapAlign = 'start';
-                    });
+    const track = document.querySelector('.gallery-track');
+    
+    if (gallery && track) {
+        let scrollSpeed = 1.5;
+        let isScrolling = true;
+
+        function autoScroll() {
+            if (isScrolling) {
+                gallery.scrollLeft += scrollSpeed;
+
+                if (gallery.scrollLeft >= track.scrollWidth / 2) {
+                    gallery.scrollLeft = 0;
                 }
             }
-            
-            // GSAP animations for gallery items
-            const galleryItems = document.querySelectorAll('.gallery-item img');
-            if (galleryItems.length > 0 && typeof gsap !== 'undefined') {
-                galleryItems.forEach(img => {
-                    // Set initial width to 0
-                    gsap.set(img, { width: "0%" });
-                    gsap.to(img, {
-                        scrollTrigger: {
-                            trigger: img,
-                            start: "top 90%",
-                            toggleActions: "play none none none",
-                            once: true
-                        },
-                        width: "100%",
-                        duration: 0.8,
-                        ease: "power2.out"
-                    });
-                });
-            }
+            requestAnimationFrame(autoScroll);
+        }
+
+        // Uncomment to pause auto-scroll on hover/touch
+        // gallery.addEventListener('mouseenter', () => {
+        //     isScrolling = false;
+        // });
+        // gallery.addEventListener('touchstart', () => {
+        //     isScrolling = false;
+        // });
+
+        gallery.addEventListener('mouseleave', () => {
+            isScrolling = true;
         });
+        gallery.addEventListener('touchend', () => {
+            isScrolling = true;
+        });
+
+        autoScroll();
+
+        // Add scroll snapping for mobile
+        if (window.innerWidth <= 768) {
+            gallery.style.scrollSnapType = 'x mandatory';
+
+            const items = track.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                item.style.scrollSnapAlign = 'start';
+            });
+        }
+    }
+
+    // GSAP animations for gallery items
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+    if (galleryItems.length > 0 && typeof gsap !== 'undefined') {
+        galleryItems.forEach(img => {
+            // Set initial width to 0
+            gsap.set(img, { width: "0%" });
+            gsap.to(img, {
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top 90%",
+                    toggleActions: "play none none none",
+                    once: true
+                },
+                width: "100%",
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        });
+    }
+});
 
 // Portfolio filtering functionality
 document.addEventListener('DOMContentLoaded', function() {
